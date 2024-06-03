@@ -1,6 +1,6 @@
 import ahead from "./ahead"
 //import schema2 //kommenter ut denne linjen
-//import schema3 //kommenter ut denne linjen
+import hiking from "./hiking"
 //import schema4 //kommenter ut denne linjen
 //import schema5 //kommenter ut denne linjen
 //import schema6 //kommenter ut denne linjen
@@ -13,7 +13,7 @@ export const schemaTypes = [
   schedule,
   ahead,
   //schema2,
-  //schema3,
+  hiking,
   //schema4,
   //schema5,
   //schema6,
