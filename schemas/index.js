@@ -1,4 +1,4 @@
-//import schema1 //kommenter ut denne linjen
+import ahead from "./ahead"
 //import schema2 //kommenter ut denne linjen
 //import schema3 //kommenter ut denne linjen
 //import schema4 //kommenter ut denne linjen
@@ -11,7 +11,7 @@ import schedule from './schedule'
 export const schemaTypes = [
   lunch,
   schedule,
-  //schema1,
+  ahead,
   //schema2,
   //schema3,
   //schema4,
