@@ -6,17 +6,12 @@ export default {
     {
       name: 'title',
       type: 'string',
-      title: 'string1',
+      title: 'Tittel',
     },
     {
-      name: 'date',
-      type: 'datetime',
-      title: 'Dato',
-    },
-    {
-      name: 'string2',
-      type: 'string',
-      title: 'String2',
+      name: 'paragraph',
+      type: 'text',
+      title: 'Kort beskrivelse',
     },
     {
       name: 'image',
