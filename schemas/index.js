@@ -1,13 +1,13 @@
-import ahead from "./ahead"
-import kafe from "./kafe"
-import hiking from "./hiking"
+import ahead from './ahead'
+import kafe from './kafe'
+import hiking from './hiking'
+import newmember from './newmember'
 //import schema4 //kommenter ut denne linjen
 //import schema5 //kommenter ut denne linjen
 //import schema6 //kommenter ut denne linjen
 //import schema7 //kommenter ut denne linjen
-import lunch from "./lunch"
+import lunch from './lunch'
 import schedule from './schedule'
-
 
 export const schemaTypes = [
   lunch,
@@ -15,6 +15,7 @@ export const schemaTypes = [
   ahead,
   kafe,
   hiking,
+  newmember,
   //schema4,
   //schema5,
   //schema6,
