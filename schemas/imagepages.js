@@ -11,11 +11,11 @@ fields: [
     description: 'Bilder fra turer',
 },
 {
-    name: 'kafè',
+    name: 'kafe',
     type: 'array',
-    title: 'Kafè',
+    title: 'Kafe',
     of: [{ type: 'image', options: { hotspot: true } }],
-    description: 'Bilder fra kafè',
+    description: 'Bilder fra kafe',
 },
 {
     name: 'huset',
