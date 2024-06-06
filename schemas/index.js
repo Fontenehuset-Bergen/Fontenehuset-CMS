@@ -7,10 +7,12 @@
 //import schema7 //kommenter ut denne linjen
 import lunch from "./lunch"
 import schedule from './schedule'
+import imagepages from './imagepages'
 
 export const schemaTypes = [
   lunch,
   schedule,
+  imagepages,
   //schema1,
   //schema2,
   //schema3,
