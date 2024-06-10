@@ -58,11 +58,14 @@ export default {
         type: 'string',
         title: 'Stoppesteder',
       },
-      {
+  
+    {
       name: 'clothingEquipment',
-      type: 'image',
+      type: 'array',
       title: 'Klær og utstyr',
-    },
+      of: [{ type: 'image', options: { hotspot: true } }],
+      description: 'Illustrasjoner av utstyr',
+  },
       {
         name: 'destinationMap',
         type: 'image',
