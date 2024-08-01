@@ -20,5 +20,11 @@ export default {
       type: 'image',
       title: 'Bilde',
     },
+
+    {
+      name: 'index',
+      type: 'number',
+      title: 'index',
+    },
   ],
 }
