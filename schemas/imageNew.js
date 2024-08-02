@@ -48,7 +48,13 @@ export default {
             name: 'imgSeven',
             type: 'image',
             title: 'bilde',
-          }
+          },
+
+          {
+            name: 'index',
+            type: 'number',
+            title: 'index',
+          },
 
         
 
