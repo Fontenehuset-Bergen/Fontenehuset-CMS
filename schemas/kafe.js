@@ -13,7 +13,14 @@ export default {
       title: 'Allergener',
       type: 'array',
       of: [{type: 'string'}],
-      layout: 'tags'
+      options: {
+        list: [
+          {title: 'Soya', value: 'soya'},
+          {title: 'Melk', value: 'milk'},
+          {title: 'Nøtter', value: 'nuts'},
+          {title: 'Gluten', value: 'gluten'},
+        ]
+      }
     },{
       name: "desc",
       title: "Beskrivelse",
