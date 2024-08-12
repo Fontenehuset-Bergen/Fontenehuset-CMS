@@ -4,24 +4,31 @@ export default {
   title: 'Lunsjretter',
   fields: [
     {
-      name: 'title',
-      type: 'string',
-      title: 'Matrett',
-    },
-    {
-      name: 'date',
-      type: 'datetime',
-      title: 'Dato',
-    },
-    {
-      name: 'allergens',
-      type: 'string',
+      name: "name",
+      title: "Navn på lunchrett",
+      type: "string",
+      validation: rule => rule.required().min(3).max(20)
+    },{
+      name: 'allergies',
       title: 'Allergener',
-    },
-    {
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        list: [
+          {title: 'Soya', value: 'soya'},
+          {title: 'Melk', value: 'milk'},
+          {title: 'Nøtter', value: 'nuts'},
+          {title: 'Gluten', value: 'gluten'},
+        ]
+      }
+    },{
+      name: "desc",
+      title: "Beskrivelse",
+      type: "string",
+    },{
       name: 'image',
-      type: 'image',
       title: 'Bilde',
+      type: 'image',
     },
-  ],
+  ]
 }
