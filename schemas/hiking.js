@@ -106,8 +106,16 @@ export default {
                 },
                 {
                   name: 'hikeImages',
-                  type: 'image',
-                  title: 'Turbilder',
+                  type: 'array',
+                  title: 'Bilder fra turen',
+                  of: [
+                    {
+                      name: 'lastHikeImages',
+                      type: 'image',
+                      title: 'Bilder fra turen',
+                    },
+                  ]
+
                 },
     ],
   }
