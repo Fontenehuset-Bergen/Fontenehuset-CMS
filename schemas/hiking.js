@@ -110,7 +110,7 @@ export default {
                   title: 'Bilder fra turen',
                   of: [
                     {
-                      name: 'lastHikeImages',
+                      name: 'lastHikeImage',
                       type: 'image',
                       title: 'Bilder fra turen',
                     },
