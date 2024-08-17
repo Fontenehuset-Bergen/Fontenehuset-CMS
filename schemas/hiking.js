@@ -109,14 +109,25 @@ export default {
                   type: 'array',
                   title: 'Bilder fra turen',
                   of: [
+          
                     {
-                      name: 'lastHikeImage',
-                      type: 'image',
-                      title: 'Bilder fra turen',
-                    },
+                      type: 'object',
+                      fields: [
+                    
+                        {
+                          name: 'image',
+                          title: 'Image',
+                          type: 'image',
+                          options: {
+                            hotspot: true // Enables image cropping
+                          }
+                        }
+                      ],
+                    }
                   ]
-
                 },
+
+                
     ],
   }
 
