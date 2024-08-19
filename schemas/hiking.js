@@ -91,7 +91,7 @@ export default {
 
                 {
                   name: 'destinationMap',
-                  type: 'image',
+                  type: 'string',
                   title: 'Destinasjonskart',
                 },
                 {
