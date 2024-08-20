@@ -4,7 +4,7 @@ export default {
   title: 'Timeplan',
   fields: [
     {
-      title: 'Hendelser',
+      title: 'Hendelse',
       name: 'category',
       type: 'string',
       options: {
