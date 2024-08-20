@@ -14,7 +14,7 @@ export default {
           { title: 'Middag', value: 'dinner' },
           { title: 'Møte', value: 'meeting' },
           { title: 'Tur', value: 'hike' },
-          { title: 'Fritids aktivitet', value: 'activity' }
+          { title: 'Annen aktivitet', value: 'activity' }
         ]
       }
     },{
@@ -36,7 +36,7 @@ export default {
           title: 'Tur',
           name: 'hike',
           type: 'reference',
-          to: [{ type: 'hikeRoute' }],
+          to: [{ type: 'hikingRoutes' }],
           hidden: ({ document }) => document?.name !== 'hike'
         }
       ]
