@@ -38,6 +38,12 @@ export default {
           type: 'reference',
           to: [{ type: 'hikingRoutes' }],
           hidden: ({ document }) => document?.name !== 'hike'
+        },{
+          title: 'Aktivitet',
+          name: 'activity',
+          type: 'reference',
+          to: [{ type: 'events' }],
+          hidden: ({ document }) => document?.name !== 'activity'
         }
       ]
     }
