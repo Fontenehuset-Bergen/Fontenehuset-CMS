@@ -95,6 +95,16 @@ export default {
                   title: 'Destinasjonskart',
                 },
                 {
+                  name: 'latitude',
+                  type: 'number',
+                  title: 'Breddegrad',
+                },
+                {
+                  name: 'longitude',
+                  type: 'number',
+                  title: 'Lengdegrad',
+                },
+                {
                   name: 'mainhikeImage',
                   type: 'image',
                   title: 'Hovedturbilde',
