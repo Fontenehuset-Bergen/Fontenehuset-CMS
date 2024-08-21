@@ -9,19 +9,21 @@ export default {
       type: 'string',
       options: {
         list: [
-          { title: 'Frokost', value: 'breakfast' },
-          { title: 'Lunch', value: 'lunch' },
-          { title: 'Middag', value: 'dinner' },
-          { title: 'Møte', value: 'meeting' },
-          { title: 'Tur', value: 'hike' },
-          { title: 'Annen aktivitet', value: 'activity' }
-        ]
-      }
-    },{
+          {title: 'Frokost', value: 'breakfast'},
+          {title: 'Lunch', value: 'lunch'},
+          {title: 'Middag', value: 'dinner'},
+          {title: 'Møte', value: 'meeting'},
+          {title: 'Tur', value: 'hike'},
+          {title: 'Annen aktivitet', value: 'activity'},
+        ],
+      },
+    },
+    {
       title: 'Dato',
       name: 'date',
-      type: 'datetime'
-    },{
+      type: 'datetime',
+    },
+    {
       title: 'Søk etter...',
       name: 'ref',
       type: 'object',
@@ -30,22 +32,24 @@ export default {
           title: 'Lunsj-rett',
           name: 'lunch',
           type: 'reference',
-          to: [{ type: 'menuLunch' }],
-          hidden: ({ document }) => document?.name !== 'lunch'
-        },{
+          to: [{type: 'menuLunch'}],
+          hidden: ({document}) => document?.name !== 'lunch',
+        },
+        {
           title: 'Tur',
           name: 'hike',
           type: 'reference',
-          to: [{ type: 'hikingRoutes' }],
-          hidden: ({ document }) => document?.name !== 'hike'
-        },{
+          to: [{type: 'routes'}],
+          hidden: ({document}) => document?.name !== 'hike',
+        },
+        {
           title: 'Aktivitet',
           name: 'activity',
           type: 'reference',
-          to: [{ type: 'events' }],
-          hidden: ({ document }) => document?.name !== 'activity'
-        }
-      ]
-    }
-  ]
+          to: [{type: 'events'}],
+          hidden: ({document}) => document?.name !== 'activity',
+        },
+      ],
+    },
+  ],
 }
