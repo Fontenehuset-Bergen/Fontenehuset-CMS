@@ -8,10 +8,17 @@ export default {
       type: 'string',
       title: 'Tittel',
     },
+   
     {
       name: 'subject',
       type: 'string',
       title: 'Område',
+    },
+    {
+      name: 'ingress',
+      type: 'string',
+      title: 'Ingress',
+      validation: Rule => Rule.max(150).error('Maximum length is 150 characters')
     },
     {
       name: 'description',
