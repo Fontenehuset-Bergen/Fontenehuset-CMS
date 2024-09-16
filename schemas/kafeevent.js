@@ -11,12 +11,17 @@ export default {
 
             {
                 title: 'Event',
-                name: 'releaseDate',
+                name: 'eventDate',
                 type: 'date',
                 options: {
                   dateFormat: 'MM-DD',
                   calendarTodayLabel: 'Today'
                 }
+              },
+              {
+                title: 'Description',
+                name: 'description',
+                type: 'text'
               }
 
 
