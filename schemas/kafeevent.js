@@ -3,6 +3,11 @@ export default {
     type: "document",
     title: "Event",
     fields: [
+        {
+            name: 'image',
+            type: 'image',
+            title: 'Bilde',
+          },
 
             {
                 title: 'Event',
