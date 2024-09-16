@@ -1,27 +1,18 @@
 export default {
-    name: "kafe",
+    name: "kafeevent",
     type: "document",
-    title: "Cafe",
+    title: "Event",
     fields: [
 
-        {
-    name: "title",
-    type: "string",
-    title: "Overskrift"
-        },
-          {
-            name: "beskrivelse",
-            type: "string",
-            title: "Beskrivelser",
-          },
-
-          {
-            name: 'image',
-            type: 'image',
-            title: 'Bilde',
-          },
-
-
+            {
+                title: 'Event',
+                name: 'releaseDate',
+                type: 'date',
+                options: {
+                  dateFormat: 'MM-DD',
+                  calendarTodayLabel: 'Today'
+                }
+              }
 
 
     ]
