@@ -12,11 +12,7 @@ export default {
             {
                 title: 'Event',
                 name: 'eventDate',
-                type: 'date',
-                options: {
-                  dateFormat: 'MM-DD',
-                  calendarTodayLabel: 'Today'
-                }
+                type: 'datetime',
               },
               {
                 title: 'Description',
