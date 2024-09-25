@@ -1,47 +1,81 @@
-import React, { useEffect, useState } from 'react'
-import { Card, Button, Flex, Text } from '@sanity/ui'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Card, Button, Text } from '@sanity/ui'
 import { ArchiveIcon, ResetIcon } from '@sanity/icons'
+import { useClient } from 'sanity'
+
+const MessageLog = (props) => {
+  const { messages } = props
+  return (
+    <Card style={{display: 'flex', flexDirection: 'column', gap: 6}}>
+      {messages.map((entry, index) => (
+        <Text key={index} style={{color:(entry.type === 'success' ? 'green' : entry.type === 'warning' ? 'red' : 'white')}}>
+          {entry.time}
+          {entry.msg}
+        </Text>
+      ))}
+    </Card>
+  )
+}
 
 const TrelloImportComponent = (props) => {
+  const client = useClient({apiVersion: '2021-06-07'})
+  const [ sanityData, setSanityData ] = useState(null)
+  const [ trelloData, setTrelloData ] = useState(null)
   const [ data, setData ] = useState(null)
-  const [ log, updateLog ] = useState([])
+  const [ log, setLog ] = useState([])
+  const [ hold, setHold ] = useState(true)
+  const [ isFetching, setFetching ] = useState(false)
 
-  const logMsg = (msg) => {
+  const updateLog = useCallback((msg = "", type = "normal") => {
     const date = new Date()
-    const entry = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')} ${msg}`
-    log.push(entry)
-    updateLog(log)
-  }
+    const time = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')} `
+    setLog(old => [...old, {time, type, msg}])
+  }, [])
 
-  const delay = ms => new Promise(res => setTimeout(res, ms));
+  const sanityFetch = useCallback(async () => {
+    const result = await client.fetch(`*[_type == "lunchDishes"] {title}`)
+    updateLog(`Fetched ${result.length} results`)
+    setSanityData(result)
+    setFetching(false)
+  }, [client, updateLog])
 
   const update = async () => {
-    const start = new Date().getTime()
-    setData('post')
-    logMsg("Fetching recent boards from https://trello.com/")
-    await delay(5000);
-    logMsg("Found 25 newly added items")
-    logMsg("Generating object")
-    await delay(5000);
-    logMsg("Creating Sanity entries")
-    await delay(5000);
-    logMsg("Successfully created 25 new entries to sanity")
-    const end = new Date().getTime()
-    logMsg(`Operation finished after ${start-end} seconds`)
-    logMsg("You can safely navigate away from this page now")
+    setHold(false)
   }
 
+  const reset = () => {
+    setHold(true)
+    setLog([])
+    setSanityData(null)
+    setTrelloData(null)
+  }
+
+  useEffect(() => {
+    if (hold) return
+
+    if (!sanityData) {
+      if (isFetching) return
+      setFetching(true)
+      updateLog("Fetching recently created lunch dishes from https://trello.com/")
+      sanityFetch()
+    }
+  }, [hold, isFetching, sanityData, sanityFetch, updateLog])
+
   return (
-    <Card padding={4} style={{justifyContent: 'center'}}>
-      {data ?
-        <Card style={{display: 'flex', flexDirection: 'column', gap: 4}}>
-          {log.map((entry, index) => (
-            <Text key={index}>{entry}</Text>
-          ))}
-        </Card>
+    <Card padding={4} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', gap:8}}>
+      <MessageLog messages={log}/>
+      {log.length > 0 ?
+        <Button
+          onClick={reset}
+          fontSize={[2, 2, 3]}
+          icon={ResetIcon}
+          mode="ghost"
+          padding={[3, 3, 4]}
+          text="Clear log"
+        />
       :
         <Button
-          onClick={() => update()}
+          onClick={update}
           fontSize={[2, 2, 3]}
           icon={ArchiveIcon}
           mode="ghost"
