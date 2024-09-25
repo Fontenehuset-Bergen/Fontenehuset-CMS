@@ -39,6 +39,9 @@ const TrelloImportComponent = (props) => {
   }, [client, updateLog])
 
   const sanityPost = async () => {
+    // lag func for bilde? url --> file --> upload
+    // https://www.sanity.io/docs/js-client#creating-documents
+
     const doc = {
       _type: 'lunchDishes',
       title: 'trelloimportcomponent ' + new Date(),
