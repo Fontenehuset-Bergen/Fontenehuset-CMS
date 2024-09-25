@@ -21,7 +21,6 @@ const TrelloImportComponent = (props) => {
   const client = useClient({apiVersion: '2021-06-07'})
   const [ sanityData, setSanityData ] = useState(null)
   const [ trelloData, setTrelloData ] = useState(null)
-  const [ data, setData ] = useState(null)
   const [ log, setLog ] = useState([])
   const [ hold, setHold ] = useState(true)
   const [ isFetching, setFetching ] = useState(false)
@@ -38,6 +37,21 @@ const TrelloImportComponent = (props) => {
     setSanityData(result)
     setFetching(false)
   }, [client, updateLog])
+
+  const sanityPost = async () => {
+    const doc = {
+      _type: 'lunchDishes',
+      title: 'trelloimportcomponent ' + new Date(),
+      allergens: '',
+      date: new Date()
+      // image: ''
+    }
+
+    client.create(doc).then((res)=>{
+      updateLog(`Created entry: ${res.title} `)
+    })
+  }
+
 
   const update = async () => {
     setHold(false)
