@@ -1,5 +1,5 @@
 import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
+import {structureTool } from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
 import {TrelloImportTool} from './components/TrelloImport'
@@ -9,8 +9,8 @@ export default defineConfig({
   title: 'Fontenehuset-CMS',
   projectId: 'xes78pqm',
   dataset: 'production',
-  plugins: [deskTool(), visionTool()],
-  tools: [TrelloImportTool()],
+  plugins: [structureTool(), visionTool()],
+  tools: [TrelloImportTool({apikey: process.env.SANITY_STUDIO_TRELLO_API_KEY})],
   schema: {
     types: schemaTypes,
   },
