@@ -18,21 +18,26 @@ const MessageLog = (props) => {
 }
 
 const TrelloImportComponent = (props) => {
-  const client = useClient({apiVersion: '2021-06-07'})
   const [ sanityData, setSanityData ] = useState(null)
   const [ trelloData, setTrelloData ] = useState(null)
   const [ log, setLog ] = useState([])
   const [ hold, setHold ] = useState(true)
   const [ isFetching, setFetching ] = useState(false)
   const { apikey } = props.tool
-  console.log(apikey)
-
+  const client = useClient({apiVersion: '2021-06-07'})
 
   const updateLog = useCallback((msg = "", type = "normal") => {
     const date = new Date()
     const time = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')} `
     setLog(old => [...old, {time, type, msg}])
   }, [])
+
+  const trelloFetch = async () => {
+    const result = await fetch('https://api.trello.com/1/actions/{id}?key=APIKey&token=APIToken', {
+      method: 'GET'
+    })
+    console.log(result)
+  }
 
   const sanityFetch = useCallback(async () => {
     const result = await client.fetch(`*[_type == "lunchDishes"] {title}`)
