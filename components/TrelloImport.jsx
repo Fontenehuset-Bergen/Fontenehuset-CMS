@@ -24,6 +24,9 @@ const TrelloImportComponent = (props) => {
   const [ log, setLog ] = useState([])
   const [ hold, setHold ] = useState(true)
   const [ isFetching, setFetching ] = useState(false)
+  const { apikey } = props.tool
+  console.log(apikey)
+
 
   const updateLog = useCallback((msg = "", type = "normal") => {
     const date = new Date()
