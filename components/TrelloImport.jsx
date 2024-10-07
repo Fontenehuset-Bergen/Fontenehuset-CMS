@@ -18,18 +18,40 @@ const MessageLog = (props) => {
 }
 
 const TrelloImportComponent = (props) => {
-  const client = useClient({apiVersion: '2021-06-07'})
   const [ sanityData, setSanityData ] = useState(null)
   const [ trelloData, setTrelloData ] = useState(null)
   const [ log, setLog ] = useState([])
   const [ hold, setHold ] = useState(true)
   const [ isFetching, setFetching ] = useState(false)
+  const { trelloApiKey, trelloToken, trelloBoardId } = props.tool
+  const client = useClient({apiVersion: '2021-06-07'})
 
   const updateLog = useCallback((msg = "", type = "normal") => {
     const date = new Date()
     const time = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')} `
     setLog(old => [...old, {time, type, msg}])
   }, [])
+
+  const trelloFetch = async () => {
+    // ${trelloBoardId}
+    // ${trelloApiKey}
+    // ${trelloToken}
+    try {
+      fetch('https://api.trello.com/1/boards/{id}/cards?key=APIKey&token=APIToken', {
+        method: 'GET'
+      })
+        .then(response => {
+          console.log(
+            `Response: ${response.status} ${response.statusText}`
+          );
+          return response.text();
+        })
+        .then(text => console.log(text))
+        .catch(err => console.error(err));
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
 
   const sanityFetch = useCallback(async () => {
     const result = await client.fetch(`*[_type == "lunchDishes"] {title}`)
@@ -75,6 +97,7 @@ const TrelloImportComponent = (props) => {
       setFetching(true)
       updateLog("Fetching recently created lunch dishes from https://trello.com/")
       sanityFetch()
+      trelloFetch()
     }
   }, [hold, isFetching, sanityData, sanityFetch, updateLog])
 
