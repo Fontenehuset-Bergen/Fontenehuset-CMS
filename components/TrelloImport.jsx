@@ -50,9 +50,7 @@ const TrelloImportComponent = (props) => {
 
       // for fun :'>
       for (let item of data) {
-        setTimeout(() => {
-          updateLog(`Added: ${item.name}`)
-        }, 250)
+        updateLog(`Added: ${item.name}`)
       }
 
     } catch (err) {
