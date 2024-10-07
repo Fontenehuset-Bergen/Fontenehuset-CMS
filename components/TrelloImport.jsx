@@ -33,21 +33,10 @@ const TrelloImportComponent = (props) => {
   }, [])
 
   const trelloFetch = async () => {
-    // ${trelloBoardId}
-    // ${trelloApiKey}
-    // ${trelloToken}
     try {
-      fetch('https://api.trello.com/1/boards/{id}/cards?key=APIKey&token=APIToken', {
-        method: 'GET'
-      })
-        .then(response => {
-          console.log(
-            `Response: ${response.status} ${response.statusText}`
-          );
-          return response.text();
-        })
-        .then(text => console.log(text))
-        .catch(err => console.error(err));
+      const result = await fetch(`https://api.trello.com/1/boards/${trelloBoardId}/cards?key=${trelloApiKey}&token=${trelloToken}`, { method: 'GET' })
+      const data = await result.json()
+      console.log(data)
     } catch (err) {
       console.log(err.message)
     }
@@ -96,7 +85,7 @@ const TrelloImportComponent = (props) => {
       if (isFetching) return
       setFetching(true)
       updateLog("Fetching recently created lunch dishes from https://trello.com/")
-      sanityFetch()
+      // sanityFetch()
       trelloFetch()
     }
   }, [hold, isFetching, sanityData, sanityFetch, updateLog])
