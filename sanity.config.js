@@ -13,7 +13,7 @@ export default defineConfig({
   tools: [TrelloImportTool({
     trelloApiKey: process.env.SANITY_STUDIO_TRELLO_API_KEY,
     trelloToken: process.env.SANITY_STUDIO_TRELLO_TOKEN,
-    trelloBoardId: process.env.SANITY_STUDIO_BOARD_ID,
+    trelloBoardId: process.env.SANITY_STUDIO_TRELLO_BOARD_ID,
   })],
   schema: {
     types: schemaTypes,
