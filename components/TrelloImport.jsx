@@ -47,6 +47,14 @@ const TrelloImportComponent = (props) => {
       updateLog(`Fetched ${data.length} results from Trello`)
       setTrelloData(data)
       setFetchingSanity(false)
+
+      // for fun :'>
+      for (let item of data) {
+        setTimeout(() => {
+          updateLog(`Added: ${item.name}`)
+        }, 250)
+      }
+
     } catch (err) {
       console.log(err.message)
     }
