@@ -22,7 +22,8 @@ const TrelloImportComponent = (props) => {
   const [ trelloData, setTrelloData ] = useState(null)
   const [ log, setLog ] = useState([])
   const [ hold, setHold ] = useState(true)
-  const [ isFetching, setFetching ] = useState(false)
+  const [ isFetchingSanity, setFetchingSanity ] = useState(false)
+  const [ isFetchingTrello, setFetchingTrello ] = useState(false)
   const { trelloApiKey, trelloToken, trelloBoardId } = props.tool
   const client = useClient({apiVersion: '2021-06-07'})
 
@@ -32,21 +33,30 @@ const TrelloImportComponent = (props) => {
     setLog(old => [...old, {time, type, msg}])
   }, [])
 
-  const trelloFetch = async () => {
+  const trelloFetch = useCallback(async () => {
     try {
-      const result = await fetch(`https://api.trello.com/1/boards/${trelloBoardId}/cards?key=${trelloApiKey}&token=${trelloToken}`, { method: 'GET' })
+      // Trellofilter should contain logic for fetching data ahead of call. Question is; how should we fetch data?
+      // - Fetch all data, ahead of current time.
+      // - All data around date in n-weeks range
+      // - All data in trello, then remove dups with data from sanity
+      // Another question is; should this fn update existing, if value in trello is dif, indicating change in trello from last fetch. (updates etc)
+      // We could use trello's id val for this
+
+      const result = await fetch(`https://api.trello.com/1/boards/${trelloBoardId}/cards?fields=id,name,due,desc,labels,cover&key=${trelloApiKey}&token=${trelloToken}`, { method: 'GET' })
       const data = await result.json()
-      console.log(data)
+      updateLog(`Fetched ${data.length} results from Trello`)
+      setTrelloData(data)
+      setFetchingSanity(false)
     } catch (err) {
       console.log(err.message)
     }
-  }
+  }, [trelloApiKey, trelloBoardId, trelloToken, updateLog])
 
   const sanityFetch = useCallback(async () => {
     const result = await client.fetch(`*[_type == "lunchDishes"] {title}`)
-    updateLog(`Fetched ${result.length} results`)
+    updateLog(`Fetched ${result.length} results from Sanity`)
     setSanityData(result)
-    setFetching(false)
+    setFetchingSanity(false)
   }, [client, updateLog])
 
   const sanityPost = async () => {
@@ -82,13 +92,18 @@ const TrelloImportComponent = (props) => {
     if (hold) return
 
     if (!sanityData) {
-      if (isFetching) return
-      setFetching(true)
+      if (isFetchingSanity) return
+      setFetchingSanity(true)
+      sanityFetch()
+    }
+
+    if (!trelloData) {
+      if (isFetchingTrello) return
+      setFetchingTrello(true)
       updateLog("Fetching recently created lunch dishes from https://trello.com/")
-      // sanityFetch()
       trelloFetch()
     }
-  }, [hold, isFetching, sanityData, sanityFetch, updateLog])
+  }, [hold, isFetchingSanity, sanityData, isFetchingTrello, trelloData, sanityFetch, trelloFetch, updateLog])
 
   return (
     <Card padding={4} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', gap:8}}>
