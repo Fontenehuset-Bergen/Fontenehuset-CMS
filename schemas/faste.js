@@ -1,14 +1,14 @@
 export default {
-    name: 'alwaysmeets',
+    name: 'faste',
     type: 'document',
     title: 'Faste møter',
     fields: [
-                {
+        {
                 name: 'title',
                 type: 'string',
                 title: 'Tittel',
-                },
-                {
+        },
+        {
                 name: 'subject',
                 type: 'string',
                 title: 'Område',
