@@ -3,11 +3,11 @@ export default {
     type: 'document',
     title: 'Turer',
     fields: [
-        {
-            name: 'destinationImage',
-            type: 'image',
-            title: 'Destinasjonsbilde',
-          },
+        // {
+        //     name: 'destinationImage',
+        //     type: 'image',
+        //     title: 'Destinasjonsbilde',
+        //   },
           {
             name: 'placeName',
             type: 'string',
