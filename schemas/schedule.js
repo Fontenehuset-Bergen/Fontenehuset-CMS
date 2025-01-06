@@ -1,7 +1,7 @@
 export default {
   name: 'events',
   type: 'document',
-  title: 'Timeplan',
+  title: 'Uke',
   fields: [
     {
       name: 'title',

@@ -1,7 +1,7 @@
 export default {
   name: 'faste',
   type: 'document',
-  title: 'Faste møter',
+  title: 'Uke: Faste møter',
   fields: [
     {
       name: 'title',
