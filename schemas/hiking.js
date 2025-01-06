@@ -94,7 +94,7 @@ export default {
 
           
 
-                {
+                /*{
                   name: 'destinationMap',
                   type: 'string',
                   title: 'Destinasjonskart',
@@ -108,7 +108,7 @@ export default {
                   name: 'longitude',
                   type: 'number',
                   title: 'Lengdegrad',
-                },
+                }*/
              
                 {
                   name: 'routeImage',
