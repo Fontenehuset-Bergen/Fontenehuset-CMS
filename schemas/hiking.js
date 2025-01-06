@@ -8,6 +8,11 @@ export default {
         //     type: 'image',
         //     title: 'Destinasjonsbilde',
         //   },
+        {
+          name: 'mainhikeImage',
+          type: 'image',
+          title: 'Hovedturbilde',
+        },
           {
             name: 'placeName',
             type: 'string',
@@ -104,11 +109,7 @@ export default {
                   type: 'number',
                   title: 'Lengdegrad',
                 },
-                {
-                  name: 'mainhikeImage',
-                  type: 'image',
-                  title: 'Hovedturbilde',
-                },
+             
                 {
                   name: 'routeImage',
                   type: 'image',
