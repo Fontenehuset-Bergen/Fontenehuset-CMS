@@ -55,7 +55,7 @@ export default {
     select: {
       title: 'title',
       images: 'images',
-      image: 'images.0',
+      image: 'images.0.asset',
     },
     prepare(selection) {
       const { title, images, image } = selection
