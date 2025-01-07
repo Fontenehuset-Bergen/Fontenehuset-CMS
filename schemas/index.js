@@ -6,6 +6,7 @@ import schedule from './schedule'
 import imagepages from './imagepages'
 import onboarding from './onboarding'
 import images from './imageNew'
+import faste from "./faste"
 
 export const schemaTypes = [
   lunch,
@@ -15,5 +16,6 @@ export const schemaTypes = [
   kafe,
   hiking,
   onboarding,
-  images
+  images,
+  faste
   ]

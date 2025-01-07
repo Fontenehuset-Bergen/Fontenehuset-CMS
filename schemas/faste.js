@@ -1,7 +1,7 @@
 export default {
-  name: 'events',
+  name: 'faste',
   type: 'document',
-  title: 'Timeplan',
+  title: 'Faste møter',
   fields: [
     {
       name: 'title',
