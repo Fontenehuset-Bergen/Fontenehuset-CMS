@@ -1,7 +1,7 @@
 export default {
   name: 'gallery',
   type: 'document',
-  title: 'Bilde Galleri',
+  title: 'Bilde Galleri v3',
   fields: [
     {
       name: 'title',

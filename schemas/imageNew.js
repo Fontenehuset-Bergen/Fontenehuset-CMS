@@ -1,7 +1,7 @@
 export default {
     name: 'images',
     type: 'document',
-    title: 'Bilder 2.0',
+    title: 'Bilde Galleri v2',
     fields: [
         {
             name: 'title',
@@ -56,9 +56,9 @@ export default {
             title: 'index',
           },
 
-        
 
-         
+
+
 
 
     ]
