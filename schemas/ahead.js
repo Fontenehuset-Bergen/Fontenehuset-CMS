@@ -9,10 +9,30 @@ export default {
       title: 'Tittel',
     },
    
-    {
+    /*{
       name: 'subject',
       type: 'string',
       title: 'Område',
+    },*/
+
+    {
+      title: "Kategori",
+      description: "Pick the format of your post",
+      name: "subject",
+      type: "string",
+      options: {
+        list: [
+          { title: "Kontor", value: "Kontor" },
+          { title: "Media", value: "Media" },
+          { title: "Kjøkken", value: "Kjøkken" },
+          { title: "Ut av huset", value: "Ut av huset" },
+          { title: "Onsdager", value: "Kjøkken" },
+          { title: "Spesielle møter", value: "Spesielle møter" },
+          { title: "Workshops", value: "Workshops" },
+          { title: "Tur", value: "Tur" },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'ingress',
