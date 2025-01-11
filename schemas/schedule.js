@@ -8,11 +8,31 @@ export default {
       type: 'string',
       title: 'Tittel',
     },
-    {
+   /* {
       name: 'subject',
       type: 'string',
       title: 'Område',
       description: 'Hvilken avdeling gjelder møtet?'
+    },*/
+
+    {
+      title: "Kategori",
+      description: "Hvilken kategori tilhører dette?",
+      name: "subject",
+      type: "string",
+      options: {
+        list: [
+          { title: "Kontor", value: "Kontor" },
+          { title: "Media", value: "Media" },
+          { title: "Kjøkken", value: "Kjøkken" },
+          { title: "Ut av huset", value: "Ut av huset" },
+          { title: "Onsdager", value: "Kjøkken" },
+          { title: "Spesielle møter", value: "Spesielle møter" },
+          { title: "Workshops", value: "Workshops" },
+          { title: "Tur", value: "Tur" },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'description',

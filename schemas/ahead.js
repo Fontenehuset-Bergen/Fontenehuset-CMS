@@ -17,7 +17,7 @@ export default {
 
     {
       title: "Kategori",
-      description: "Pick the format of your post",
+      description: "Hvilken kategori tilhører dette?",
       name: "subject",
       type: "string",
       options: {
