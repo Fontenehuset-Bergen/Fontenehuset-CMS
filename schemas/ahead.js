@@ -23,6 +23,7 @@ export default {
       options: {
         list: [
           { title: "Administrasjon", value: "Administrasjon" },
+          { title: "Møter", value: "Møter" },
           { title: "Media", value: "Media" },
           { title: "Kjøkken", value: "Kjøkken" },
           { title: "Ut av huset", value: "Ut av huset" },
