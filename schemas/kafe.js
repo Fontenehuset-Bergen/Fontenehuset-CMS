@@ -1,14 +1,15 @@
 export default {
-  name: "coffee",
+  name: "kafe",
   type: "document",
-  title: "kaffe",
+  title: "Cafe",
   fields: [
     {
-      name: "name",
-      title: "Navn på drikke",
-      type: "string",
-      validation: rule => rule.required().min(3).max(20)
-    },{
+      name: 'name',
+      title: 'Navn på drikke',
+      type: 'string',
+      validation: (rule) => rule.required().min(3).max(20),
+    },
+    {
       name: 'allergies',
       title: 'Allergener',
       type: 'array',
@@ -19,16 +20,18 @@ export default {
           {title: 'Melk', value: 'milk'},
           {title: 'Nøtter', value: 'nuts'},
           {title: 'Gluten', value: 'gluten'},
-        ]
-      }
-    },{
-      name: "desc",
-      title: "Beskrivelse",
-      type: "string",
-    },{
+        ],
+      },
+    },
+    {
+      name: 'desc',
+      title: 'Beskrivelse',
+      type: 'string',
+    },
+    {
       name: 'image',
       title: 'Bilde',
       type: 'image',
     },
-  ]
+  ],
 }
