@@ -22,7 +22,7 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Kontor", value: "Kontor" },
+          { title: "Administrasjon", value: "Administrasjon" },
           { title: "Media", value: "Media" },
           { title: "Kjøkken", value: "Kjøkken" },
           { title: "Ut av huset", value: "Ut av huset" },
