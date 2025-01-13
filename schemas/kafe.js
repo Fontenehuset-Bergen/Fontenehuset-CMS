@@ -1,16 +1,16 @@
 export default {
-  name: "kafe",
-  type: "document",
-  title: "Cafe",
+  name: 'kafe',
+  type: 'document',
+  title: 'Cafe',
   fields: [
     {
-      name: 'name',
+      name: 'title',
       title: 'Navn på drikke',
       type: 'string',
       validation: (rule) => rule.required().min(3).max(20),
     },
     {
-      name: 'allergies',
+      name: 'allergens',
       title: 'Allergener',
       type: 'array',
       of: [{type: 'string'}],
@@ -24,7 +24,7 @@ export default {
       },
     },
     {
-      name: 'desc',
+      name: 'beskrivelse',
       title: 'Beskrivelse',
       type: 'string',
     },
