@@ -22,14 +22,16 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Kontor", value: "Kontor" },
+          { title: "Administrasjon", value: "Administrasjon" },
+          { title: "Møter", value: "Møter" },
           { title: "Media", value: "Media" },
           { title: "Kjøkken", value: "Kjøkken" },
-          { title: "Ut av huset", value: "Ut av huset" },
-          { title: "Onsdager", value: "Kjøkken" },
+          { title: "Ut av huset", value: "UtAvHuset" },
+          { title: "Onsdager", value: "Onsdager" },
           { title: "Spesielle møter", value: "SpesielleMøter" },
           { title: "Workshops", value: "Workshops" },
           { title: "Tur", value: "Tur" },
+          { title: "Kafe", value: "Kafe" }
         ],
       },
       validation: (Rule) => Rule.required(),
