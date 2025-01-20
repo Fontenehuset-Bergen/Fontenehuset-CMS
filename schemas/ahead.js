@@ -27,7 +27,7 @@ export default {
           { title: "Media", value: "Media" },
           { title: "Kjøkken", value: "Kjøkken" },
           { title: "Ut av huset", value: "UtAvHuset" },
-          { title: "Onsdager", value: "Kjøkken" },
+          { title: "Onsdager", value: "Onsdager" },
           { title: "Spesielle møter", value: "SpesielleMøter" },
           { title: "Workshops", value: "Workshops" },
           { title: "Tur", value: "Tur" },
