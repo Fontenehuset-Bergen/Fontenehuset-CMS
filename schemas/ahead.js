@@ -27,7 +27,7 @@ export default {
           { title: "Kjøkken", value: "Kjøkken" },
           { title: "Ut av huset", value: "Ut av huset" },
           { title: "Onsdager", value: "Kjøkken" },
-          { title: "Spesielle møter", value: "Spesielle møter" },
+          { title: "Spesielle møter", value: "SpesielleMøter" },
           { title: "Workshops", value: "Workshops" },
           { title: "Tur", value: "Tur" },
         ],
@@ -49,6 +49,11 @@ export default {
       name: 'time',
       type: 'datetime',
       title: 'Tidspunkt',
+    },
+    {
+      name: 'timeend',
+      type: 'datetime',
+      title: 'Slutt-tidspunkt',
     },
     {
       name: 'image',
