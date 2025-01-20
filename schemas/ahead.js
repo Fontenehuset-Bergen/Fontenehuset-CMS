@@ -49,12 +49,7 @@ export default {
       name: 'time',
       type: 'datetime',
       title: 'Tidspunkt',
-    },
-    {
-      name: 'timeend',
-      type: 'datetime',
-      title: 'Slutt-tidspunkt',
-    },
+    },   
     {
       name: 'image',
       type: 'image',
