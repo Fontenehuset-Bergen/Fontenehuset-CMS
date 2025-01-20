@@ -53,6 +53,11 @@ export default {
       title: 'Tidspunkt',
     },   
     {
+      name: 'timeend',
+      type: 'datetime',
+      title: 'Slutt-tidspunkt',
+    }, 
+    {
       name: 'image',
       type: 'image',
       title: 'Bilde',
