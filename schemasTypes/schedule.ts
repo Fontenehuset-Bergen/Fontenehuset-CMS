@@ -1,20 +1,21 @@
+import { Rule } from "sanity";
+
 export default {
-  name: 'events',
-  type: 'document',
-  title: 'Uke',
+  name: "events",
+  type: "document",
+  title: "Uke",
   fields: [
     {
-      name: 'title',
-      type: 'string',
-      title: 'Tittel',
+      name: "title",
+      type: "string",
+      title: "Tittel",
     },
-   /* {
+    /* {
       name: 'subject',
       type: 'string',
       title: 'Område',
       description: 'Hvilken avdeling gjelder møtet?'
     },*/
-
     {
       title: "Kategori",
       description: "Hvilken kategori tilhører dette?",
@@ -33,30 +34,35 @@ export default {
           { title: "Tur", value: "Tur" },
         ],
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'description',
-      type: 'string',
-      title: 'Beskrivelse',
-      description: 'Beskriv gjerne dagens agenda eller annen informasjon om møtet'
+      name: "description",
+      type: "string",
+      title: "Beskrivelse",
+      description:
+        "Beskriv gjerne dagens agenda eller annen informasjon om møtet",
     },
     {
-      name: 'time',
-      type: 'datetime',
-      title: 'Tidspunkt',
+      name: "time",
+      type: "datetime",
+      title: "Tidspunkt",
     },
     {
-      name: 'duration',
-      type: 'number',
-      title: 'Varighet',
-      description: 'Hvor mange minutter varer møtet?',
-      validation: rule => rule.required().min(10).max(480).warning('Sjekk at varighet gir mening')
+      name: "duration",
+      type: "number",
+      title: "Varighet",
+      description: "Hvor mange minutter varer møtet?",
+      validation: (Rule: Rule) =>
+        Rule.required()
+          .min(10)
+          .max(480)
+          .warning("Sjekk at varighet gir mening"),
     },
     {
-      name: 'image',
-      type: 'image',
-      title: 'Bilde',
+      name: "image",
+      type: "image",
+      title: "Bilde",
     },
   ],
-}
+};
