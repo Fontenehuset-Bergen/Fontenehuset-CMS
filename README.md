@@ -8,6 +8,14 @@ npm run i
 ```
 Etter dette får du full tilgang til [Sanity CLI](https://www.sanity.io/docs/cli) i terminalen som har deg blant annet verifisere schema og laste opp lokal kode til content lake
 
+## Hvordan ligger jeg til nye schema
+> [!NOTE]
+> Du kan lese mer om oppsett av [schema files her](https://www.sanity.io/docs/schemas-and-forms)
+
+For mange nye brukere av Sanity så kan oppsettet være litt annerledes enn det de er vandt med, hvis du har jobbet med PostgreSQL eller andre SQL databaser kan du tenke på en `schema.ts` fil som et table, eller hvis du er vandt til noSQL så er det en collection.
+
+Etter du har lagt til en `mySchema.ts` fil inni `schemaTypes` mappen, så må du huske å importere den i `/schemaTypes/index.ts`.
+
 # Validering av skjema
 Etter du har gjort endringer i schema files må du verifisere at endringene dine fungerer, dette gjør du først ved å kjøre kommandoen
 ```console
