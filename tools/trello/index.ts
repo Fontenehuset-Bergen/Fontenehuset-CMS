@@ -1,25 +1,11 @@
-import { type Tool } from "sanity";
-import { DashboardIcon } from "@sanity/icons";
-import { ComponentType } from "react";
+import { DashboardIcon } from "@sanity/icons"
 import { TrelloImportPage } from "./page";
 
-export interface TrelloApiSecrets {
-  trelloApiKey: string;
-  trelloToken: string;
-  trelloBoardId: string;
-}
-
-export interface TrelloImportTool {
-  component: ComponentType<{
-    tool: Tool<TrelloApiSecrets>;
-  }>;
-}
-
-export const trelloImportTool = (secrets: TrelloApiSecrets) => {
+export const trelloImportTool = () => {
   return {
     title: "Trello",
-    name: "trello-import-tool", // localhost:3333/my-custom-tool
+    name: "trello",
     icon: DashboardIcon,
-    component: () => TrelloImportPage(secrets),
+    component: () => TrelloImportPage(),
   };
 };
