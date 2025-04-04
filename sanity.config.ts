@@ -15,13 +15,7 @@ export default defineConfig([
     subtitle: "production dataset",
     icon: RobotIcon,
     plugins: [structureTool(), visionTool()],
-    tools: [
-      trelloImportTool({
-        trelloApiKey: process.env.SANITY_STUDIO_TRELLO_API_KEY as string,
-        trelloToken: process.env.SANITY_STUDIO_TRELLO_TOKEN as string,
-        trelloBoardId: process.env.SANITY_STUDIO_TRELLO_BOARD_ID as string,
-      }),
-    ],
+    tools: [trelloImportTool()],
     schema: {
       types: schemaTypes,
     },
@@ -35,13 +29,7 @@ export default defineConfig([
     subtitle: "development dataset",
     icon: RocketIcon,
     plugins: [structureTool(), visionTool()],
-    tools: [
-      trelloImportTool({
-        trelloApiKey: process.env.SANITY_STUDIO_TRELLO_API_KEY as string,
-        trelloToken: process.env.SANITY_STUDIO_TRELLO_TOKEN as string,
-        trelloBoardId: process.env.SANITY_STUDIO_TRELLO_BOARD_ID as string,
-      }),
-    ],
+    tools: [trelloImportTool()],
     schema: {
       types: schemaTypes,
     },
