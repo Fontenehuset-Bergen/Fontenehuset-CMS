@@ -7,62 +7,30 @@ export function TrelloImportPage() {
   const { data, fetching, error, fetchTrello } = useTrello();
 
   return (
-    <Flex
-      padding={4}
-      gap={4}
-      direction={"column"}
-    >
+    <Flex padding={4} gap={4} direction={"column"}>
       <Flex gap={4}>
-        <Card
-          flex={1}
-          padding={4}
-          border
-        >
-          <Flex
-            gap={2}
-            direction={"column"}
-          >
+        <Card flex={1} padding={4} border>
+          <Flex gap={2} direction={"column"}>
             <Text>Check login status</Text>
             <Button>Login</Button>
           </Flex>
         </Card>
-        <Card
-          flex={1}
-          padding={4}
-          border
-        >
-          <Flex
-            gap={2}
-            direction={"column"}
-          >
+        <Card flex={1} padding={4} border>
+          <Flex gap={2} direction={"column"}>
             <Text>Fetch Data from Trello</Text>
             <Button onClick={fetchTrello}>Fetch</Button>
           </Flex>
         </Card>
-        <Card
-          flex={1}
-          padding={4}
-          border
-        >
-          <Flex
-            gap={2}
-            direction={"column"}
-          >
+        <Card flex={1} padding={4} border>
+          <Flex gap={2} direction={"column"}>
             <Text>Update sanity</Text>
             <Button>Post</Button>
           </Flex>
         </Card>
       </Flex>
-      <Card
-        flex={1}
-        padding={4}
-        border
-      >
+      <Card flex={1} padding={4} border>
         {fetching ? (
-          <Flex
-            padding={4}
-            gap={2}
-          >
+          <Flex padding={4} gap={2}>
             <Spinner muted />
             <Text>Loading...</Text>
           </Flex>

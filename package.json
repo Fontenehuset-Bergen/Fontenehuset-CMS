@@ -37,7 +37,7 @@
     "useTabs": false,
     "arrowParens": "always",
     "jsxSingleQuote": true,
-    "singleAttributePerLine": true,
+    "singleAttributePerLine": false,
     "bracketSameLine": false,
     "bracketSpacing": true
   }

@@ -1,4 +1,4 @@
-import { DashboardIcon } from "@sanity/icons"
+import { DashboardIcon } from "@sanity/icons";
 import { TrelloImportPage } from "./page";
 
 export const trelloImportTool = () => {
