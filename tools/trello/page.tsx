@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button, Card, Flex, Spinner, Stack, Text } from "@sanity/ui";
-import { DownloadIcon, AddDocumentIcon } from "@sanity/icons";
+import { Button, Card, Flex, Spinner, Text } from "@sanity/ui";
+import { DownloadIcon, AddDocumentIcon, UserIcon } from "@sanity/icons";
 import { LoggerComponent } from "../../components/lists/logger/container";
 import { useTrello } from "../../libs/trello/client";
 import { useSanity } from "../../libs/sanity/client";
@@ -26,39 +26,56 @@ export function TrelloImportPage() {
     <Flex padding={4} gap={4} direction={"column"}>
       <Flex gap={4}>
         <Card flex={1} padding={4} border muted={currentStage !== "login"}>
-          <Flex gap={2} direction={"column"}>
-            <Text>Check login status</Text>
+          <Flex gap={4} direction={"column"}>
+            <Flex justify={"center"}>
+              <Text size={4}>Autorisasjon</Text>
+            </Flex>
             <Button
-              disabled={currentStage !== "login"}
               onClick={() => setCurrentStage("fetch")}
-            >
-              Login
-            </Button>
+              disabled={currentStage !== "login"}
+              text='Login'
+              iconRight={UserIcon}
+              space={3}
+              fontSize={4}
+              justify={"space-between"}
+            />
           </Flex>
         </Card>
         <Card flex={1} padding={4} border muted={currentStage === "login"}>
-          <Flex gap={2} direction={"column"}>
-            <Text>Fetch Data from Trello</Text>
+          <Flex gap={4} direction={"column"}>
+            <Flex justify={"center"}>
+              <Text size={4}>Trello</Text>
+            </Flex>
             <ProcessStatusButton
               disabled={currentStage === "login"}
               onClick={fetchTrello}
               loading={isTrelloFetching}
               icon={DownloadIcon}
-              defaultText={trelloData.length > 0 ? "Last ned igjen" : "Last ned Trello data"}
+              defaultText={
+                trelloData.length > 0
+                  ? "Last ned igjen"
+                  : "Last ned Trello data"
+              }
               activeText='Laster ned...'
             />
           </Flex>
         </Card>
         <Card flex={1} padding={4} border muted={trelloData.length === 0}>
-          <Flex gap={2} direction={"column"}>
-            <Text>Update sanity</Text>
+          <Flex gap={4} direction={"column"}>
+            <Flex justify={"center"}>
+              <Text size={4}>Sanity</Text>
+            </Flex>
             <ProcessStatusButton
               disabled={trelloData.length === 0}
               onClick={handlePost}
               loading={isSanityPosting}
               icon={AddDocumentIcon}
               // todo: update defaultText to say posted then done
-              defaultText={trelloData.length > 0 ? "Overfør til Sanity" : "Utilgjengelig nå"}
+              defaultText={
+                trelloData.length > 0
+                  ? "Overfør til Sanity"
+                  : "Utilgjengelig nå"
+              }
               activeText='Oppdaterer...'
             />
           </Flex>
