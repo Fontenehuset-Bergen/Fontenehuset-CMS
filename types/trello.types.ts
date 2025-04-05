@@ -1,4 +1,4 @@
-export type TrelloApiItemStatus = "duplicate" | "new" | "processed";
+export type TrelloApiItemStatus = "duplicate" | "new" | "processed" | "failed";
 
 export interface TrelloApiItem {
   id: string;
