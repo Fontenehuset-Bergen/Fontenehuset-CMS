@@ -4,6 +4,7 @@ import { TrelloApiItem } from "../../../types/trello.types";
 import { StatusLabel } from "../labels/status";
 
 export function LoggerLine(menuItem: TrelloApiItem) {
+  // todo add button for removing a single item
   const time = new Date();
   return (
     <Card>
