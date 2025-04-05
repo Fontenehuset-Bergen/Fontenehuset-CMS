@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { trelloCredentials } from "./credentials";
 import { TrelloApiItem } from "../../types/trello.types";
-import testData from "../../testData/trello.json";
+import testData from "../../tests/data/trelloApiResponse.json";
 
 export function useTrello() {
   const [data, setData] = useState<TrelloApiItem[]>([]);
-  const [fetching, setFetching] = useState<boolean>(false);
-  const [error, setError] = useState();
+  const [isTrolloAuthorized, setIsTrolloAuthorized] = useState<boolean>(false);
+  const [isTrolloFetching, setTrolloFetching] = useState<boolean>(false);
+  const [isTrolloError, setTrolloError] = useState();
 
   async function fetchTrello() {
     try {
@@ -29,9 +30,9 @@ export function useTrello() {
         console.log(parsed);
         setData(parsed);
       } */
-      setFetching(true)
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setFetching(false)
+      setTrolloFetching(true);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setTrolloFetching(false);
 
       const filtered = testData.filter((item) => !item.name.includes("http"));
       setData(filtered);
@@ -42,8 +43,9 @@ export function useTrello() {
 
   return {
     data,
-    fetching,
-    error,
+    isTrolloAuthorized,
+    isTrolloFetching,
+    isTrolloError,
     fetchTrello,
   };
 }
