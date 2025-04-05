@@ -40,11 +40,14 @@ export function TrelloImportPage() {
               logget inn i nettleseren med en bruker som tilhører Fontenehuset
               på Trello
             </Text>
+            <Flex gap={2} align={"center"}>
+              <Text>Login status: ❌</Text>
+            </Flex>
             <Box flex={1}></Box>
             <Button
               onClick={() => setCurrentStage("fetch")}
               disabled={currentStage !== "login"}
-              text='Login'
+              text='Sjekk login'
               iconRight={UserIcon}
               space={3}
               fontSize={4}
