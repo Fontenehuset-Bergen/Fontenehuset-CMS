@@ -1,0 +1,55 @@
+{
+  "id": "67ecf18b3f42d3b20d54d195",
+  "name": "Bananbrød",
+  "due": null,
+  "desc": "",
+  "labels": [
+    {
+      "id": "664da1b22922a376480a3410",
+      "name": "Gluten"
+    },
+    {
+      "id": "664da1b22922a376480a3420",
+      "name": "Laktose"
+    }
+  ],
+  "cover": {
+    "idAttachment": "67ecf559adbc1a69eb3313a0",
+    "scaled": [
+      {
+        "id": "67ecf55eadbc1a69eb332e1b",
+        "url": "https://trello.com/1/cards/67ecf18b3f42d3b20d54d195/attachments/67ecf559adbc1a69eb3313a0/previews/67ecf55eadbc1a69eb332e1b/download/bilde.webp"
+      },
+      {
+        "id": "67ecf55eadbc1a69eb332e1d",
+        "url": "https://trello.com/1/cards/67ecf18b3f42d3b20d54d195/attachments/67ecf559adbc1a69eb3313a0/previews/67ecf55eadbc1a69eb332e1d/download/bilde.webp"
+      },
+      {
+        "id": "67ecf55eadbc1a69eb332e1c",
+        "url": "https://trello.com/1/cards/67ecf18b3f42d3b20d54d195/attachments/67ecf559adbc1a69eb3313a0/previews/67ecf55eadbc1a69eb332e1c/download/bilde.webp"
+      },
+      {
+        "id": "67ecf55eadbc1a69eb332e1e",
+        "url": "https://trello.com/1/cards/67ecf18b3f42d3b20d54d195/attachments/67ecf559adbc1a69eb3313a0/previews/67ecf55eadbc1a69eb332e1e/download/bilde.webp"
+      },
+      {
+        "id": "67ecf55eadbc1a69eb332e1f",
+        "url": "https://trello.com/1/cards/67ecf18b3f42d3b20d54d195/attachments/67ecf559adbc1a69eb3313a0/previews/67ecf55eadbc1a69eb332e1f/download/bilde.webp"
+      },
+      {
+        "id": "67ecf55eadbc1a69eb332e20",
+        "url": "https://trello.com/1/cards/67ecf18b3f42d3b20d54d195/attachments/67ecf559adbc1a69eb3313a0/previews/67ecf55eadbc1a69eb332e20/download/bilde.webp"
+      },
+      {
+        "id": "67ecf55eadbc1a69eb332e21",
+        "url": "https://trello.com/1/cards/67ecf18b3f42d3b20d54d195/attachments/67ecf559adbc1a69eb3313a0/previews/67ecf55eadbc1a69eb332e21/download/bilde.webp"
+      }
+    ]
+  },
+  "attachments": [
+    {
+      "id": "67ecf559adbc1a69eb3313a0",
+      "url": "https://trello.com/1/cards/67ecf18b3f42d3b20d54d195/attachments/67ecf559adbc1a69eb3313a0/download/bilde.png"
+    }
+  ]
+}
