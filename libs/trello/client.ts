@@ -34,7 +34,12 @@ export function useTrello() {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setTrolloFetching(false);
 
-      const filtered = testData.filter((item) => !item.name.includes("http"));
+      const result: TrelloApiItem[] = JSON.parse(JSON.stringify(testData));
+      const filtered = result.filter((item) => !item.name.includes("http"));
+      const addingTempDuplicateField = filtered.forEach(
+        (item) =>
+          (item.status = Math.round(Math.random()) > 0.5 ? "new" : "duplicate"),
+      );
       setData(filtered);
     } catch (err) {
       console.log(err);

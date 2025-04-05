@@ -1,13 +1,14 @@
-import { Card, Flex, Text, Tooltip } from "@sanity/ui";
+import { Badge, Box, Card, Flex, Text, Tooltip } from "@sanity/ui";
 import { MenuItemCard } from "../../cards/menuItem";
 import { TrelloApiItem } from "../../../types/trello.types";
+import { StatusLabel } from "../labels/status";
 
 export function LoggerLine(menuItem: TrelloApiItem) {
-  const time = new Date().toLocaleTimeString("en-GB");
+  const time = new Date();
   return (
     <Card>
-      <Flex gap={2}>
-        <Text muted>{time}</Text>
+      <Flex gap={4} align={"center"}>
+        <Text muted>{time.toLocaleTimeString("no-NB")}</Text>
         <Tooltip
           content={<MenuItemCard {...menuItem} />}
           animate
@@ -17,6 +18,11 @@ export function LoggerLine(menuItem: TrelloApiItem) {
         >
           <Text>{menuItem.name}</Text>
         </Tooltip>
+        <Box flex={1}></Box>
+        {menuItem.status && <StatusLabel status={menuItem.status} hideNew/>}
+        <Text muted>
+          {time.toLocaleDateString("no-NB", { dateStyle: "long" })}
+        </Text>
       </Flex>
     </Card>
   );

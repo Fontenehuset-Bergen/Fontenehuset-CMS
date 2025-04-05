@@ -7,7 +7,7 @@ import { useSanity } from "../../libs/sanity/client";
 export function TrelloImportPage() {
   const { data, isTrolloAuthorized, isTrolloError, isTrolloFetching, fetchTrello } = useTrello();
   const { isSanityError, isSanityPosting, postData } = useSanity();
-  const [currentStage, setCurrentStage] = useState<string>("login");
+  const [currentStage, setCurrentStage] = useState<string>("login"); // change logic to use isTrolloAuthorized
 
   function handlePost() {
     postData(data);
