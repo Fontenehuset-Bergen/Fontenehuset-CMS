@@ -34,8 +34,8 @@ export async function fetchTrello() {
     const result: TrelloApiItem[] = JSON.parse(JSON.stringify(testData));
     const filtered = result.filter((item) => !item.name.includes("http"));
 
-    // limit to 5 during testing
-    filtered.length = 1;
+    // limit to 10 during testing
+    filtered.length = 10;
 
     return filtered
   } catch (err) {
