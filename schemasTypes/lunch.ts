@@ -9,7 +9,7 @@ export default {
       name: "name",
       title: "Navn på lunchrett",
       type: "string",
-      validation: (Rule: Rule) => Rule.required().min(3).max(20),
+      validation: (Rule: Rule) => Rule.required().min(3).max(100),
     },
     {
       name: "allergies",
@@ -39,7 +39,7 @@ export default {
     {
       name: "desc",
       title: "Beskrivelse",
-      type: "string",
+      type: "text",
     },
     {
       name: "image",
