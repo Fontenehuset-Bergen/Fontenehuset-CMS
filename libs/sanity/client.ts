@@ -8,6 +8,10 @@ export function useSanity() {
   async function checkForExisting(data: TrelloApiItem[]) {
     // Check for dupes
     // Modify result from Trello and add field "duplicate" ?
+    const addingTempDuplicateField = data.forEach(
+      (item) =>
+        (item.status = Math.round(Math.random()) > 0.5 ? "new" : "duplicate"),
+    );
     return data;
   }
 
