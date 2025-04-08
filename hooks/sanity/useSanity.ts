@@ -4,7 +4,7 @@ import { TrelloApiItem, TrelloApiResponse } from "../../types/trello.types";
 import { checkForExisting, postData } from "../../libs/sanity";
 
 export function useSanity() {
-  const client = useClient();
+  const client = useClient({apiVersion: "2025-02-10"});
   const [allowDuplicates, setAllowDuplicates] = useState<boolean>(false);
   const [isSanityError, setSanityError] = useState();
   const [isSanityPosting, setSanityPosting] = useState<boolean>(false);
