@@ -198,6 +198,7 @@ export type LunchDishes = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  id?: string
   name?: string;
   allergies?: Array<string>;
   desc?: string;

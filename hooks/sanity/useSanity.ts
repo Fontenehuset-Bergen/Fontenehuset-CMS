@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useClient } from "sanity";
 import { TrelloApiItemModified } from "../../types/trello.types";
+import { LunchDishes } from "../../export/sanity.types";
 
 export function useSanity() {
   const client = useClient({ apiVersion: "2025-02-10" });
@@ -35,23 +36,66 @@ export function useSanity() {
 
     // Set status and start posting
     setSanityPosting(true);
+
     while (queue.length) {
       const current = queue.shift();
-      try {
-        // Cancel if last item reached
-        if (!current) continue;
 
-        const response = await client.create({
+      // Cancel if last item reached
+      if (!current) continue;
+
+      // Skip excluded files
+      if (!current.include) continue;
+
+      try {
+        // Create basic document
+        const document: Partial<LunchDishes> = {
           _type: "lunchDishes",
           name: current.name,
-        });
+          id: current.id,
+          desc: current.desc,
+        };
+
+        // Add allergies
+        if (current.labels) {
+          document.allergies = current.labels.reduce<string[]>(
+            (a, current) => [...a, current.name.toLowerCase()],
+            [],
+          );
+        }
+
+
+        // Handle image blob
+        const hasImage = current.attachments?.at(0);
+        if (hasImage?.url) {
+          const imageResponse = await fetch(hasImage.url)
+          const imageBlob = imageResponse.blob()
+
+          const extension = hasImage.url.split(".").pop()
+          console.log(imageResponse);
+          
+
+          /* const sanityAssetResponse = await client.assets.upload('image', imageBlob, {
+            filename: 'uploaded-image.jpg',
+          }); */
+        }
+
+        /* const response = await client.create({
+          _type: "lunchDishes",
+          name: current.name,
+          id: current.id,
+          desc: current.desc,
+          allergies: current.labels?.reduce<string[]>(
+            (a, current) => [...a, current.name.toLowerCase()],
+            [],
+          ),
+        }); */
 
         // Mark status and push to result
-        if (response._id) {
+        /* if (response._id) {
           current.status = "processed";
         } else {
           current.status = "failed";
-        }
+        } */
 
         result.push(current);
 
