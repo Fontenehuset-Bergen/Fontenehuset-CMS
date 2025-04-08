@@ -1,13 +1,23 @@
-import { Badge, Box, Card, Flex, Text, Tooltip } from "@sanity/ui";
+import { Box, Card, Checkbox, Flex, Text, Tooltip } from "@sanity/ui";
 import { MenuItemCard } from "../../cards/menuItem";
-import { TrelloApiItem } from "../../../types/trello.types";
+import { TrelloApiItemModified } from "../../../types/trello.types";
 import { StatusLabel } from "../labels/status";
+import { LabelsInline } from "../labels/inline";
+import { useTrelloContext } from "../../../context/trello/provider";
 
 // todo add button for removing a single item
-export function LoggerLine(lunchDish: TrelloApiItem) {
-  const { id, name, desc, start, cover, labels, status } = lunchDish;
-  const due = start ? new Date(start) : undefined;
+export function LoggerLine(lunchDish: TrelloApiItemModified) {
+  const { trelloData, setTrelloData } = useTrelloContext();
+  const due = lunchDish.start ? new Date(lunchDish.start) : undefined;
   const currentTime = new Date();
+
+  function handleCheckbox(checked: boolean) {
+    const trelloDataNew = trelloData.map((item) =>
+      item.id === lunchDish.id ? { ...item, include: checked } : item,
+    );
+    setTrelloData(trelloDataNew);
+  }
+
   return (
     <Card>
       <Flex gap={4} align={"center"}>
@@ -19,17 +29,26 @@ export function LoggerLine(lunchDish: TrelloApiItem) {
           placement='top'
           portal
         >
-          <Text>{name}</Text>
+          <Text>
+            {lunchDish.name} {lunchDish.include ? "true" : "false"}
+          </Text>
         </Tooltip>
+        {lunchDish.labels && <LabelsInline labels={lunchDish.labels} />}
         <Box flex={1}></Box>
-        {status && <StatusLabel status={status} />}
-        <Box style={{width: 100, textAlign: "end"}}>
+        {lunchDish.status && <StatusLabel status={lunchDish.status} />}
+        <Box style={{ width: 100, textAlign: "end" }}>
           <Text muted>
             {due
               ? due.toLocaleDateString("no-NB", { dateStyle: "long" })
               : "dato mangler"}
           </Text>
         </Box>
+        <Checkbox
+          checked={lunchDish.include}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleCheckbox(e.target.checked)
+          }
+        />
       </Flex>
     </Card>
   );

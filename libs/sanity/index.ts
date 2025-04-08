@@ -1,9 +1,9 @@
-import { TrelloApiItem } from "../../types/trello.types";
+import { TrelloApiItem, TrelloApiItemModified } from "../../types/trello.types";
 import { SanityClient } from "sanity";
 
 export async function checkForExisting(
   client: SanityClient,
-  item: TrelloApiItem,
+  item: TrelloApiItemModified,
 ) {
   // Rate limit to avoid spam
   await new Promise((resolve) => setTimeout(resolve, 100));
@@ -14,25 +14,25 @@ export async function checkForExisting(
     `*[_type == "lunchDishes" && name match "${item.name}"] {}`,
   );
 
+  // Assign duplicate status
   if (result.length) {
     item.status = "duplicate";
+    item.include = false;
   } else {
     item.status = "new";
+    item.include = true;
   }
-
-  // Tester
-  /* data.forEach(
-    (item) =>
-      (item.status = Math.round(Math.random()) > 0.5 ? "new" : "duplicate"),
-  ); */
+  
+  // Attach fetched date key
+  item.modified = new Date();
 
   return item;
 }
 
-export async function postData(client: SanityClient, data: TrelloApiItem[]) {
+export async function postData(client: SanityClient, data: TrelloApiItemModified[]) {
   // Create promise queue
-  const queue: TrelloApiItem[] = [...data];
-  const result: TrelloApiItem[] = [];
+  const queue: TrelloApiItemModified[] = [...data];
+  const result: TrelloApiItemModified[] = [];
 
   while (queue.length) {
     const current = queue.shift();

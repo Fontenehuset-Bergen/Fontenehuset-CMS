@@ -1,5 +1,5 @@
 import { TrelloApiItem } from "../../types/trello.types";
-import testData from "../../tests/data/trelloApiResponse.json"
+import testData from "../../tests/data/trelloApiResponse.json";
 
 const trelloCredentials = {
   trelloApiKey: process.env.SANITY_STUDIO_TRELLO_API_KEY as string,
@@ -10,9 +10,9 @@ const trelloCredentials = {
 export async function fetchTrello() {
   try {
     // Query string for trello api
-    /* const QUERY = `https://api.trello.com/1/boards/${trelloCredentials.trelloBoardId}/cards?fields=id,name,due,desc,labels,cover&attachments=true&attachment_fields=url&key=${trelloCredentials.trelloApiKey}&token=${trelloCredentials.trelloToken}`; */
+    // const QUERY = `https://api.trello.com/1/boards/${trelloCredentials.trelloBoardId}/cards?open&fields=id,name,start,desc,labels,cover&attachments=true&key=${trelloCredentials.trelloApiKey}&token=${trelloCredentials.trelloToken}`;
 
-    // Get headers
+    // Set headers for get method
     /* const params = {
       method: "GET",
       headers: {
@@ -22,22 +22,14 @@ export async function fetchTrello() {
 
     // Processing request and converting result into an object
     /* const result = await fetch(QUERY, params);
-    const parsed = await result.json(); */
+    const parsed: TrelloApiItem[] = await result.json(); */
 
-    /* if (parsed) {
-      console.log(parsed);
-      setData(parsed);
-    } */
-
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
 
     const result: TrelloApiItem[] = JSON.parse(JSON.stringify(testData));
-    const filtered = result.filter((item) => !item.name.includes("http"));
+    const filtered = result.filter((item) => !item.name.includes("http") && item.start);
 
-    // limit to 10 during testing
-    filtered.length = 10;
-
-    return filtered
+    return filtered;
   } catch (err) {
     console.log(err);
   }

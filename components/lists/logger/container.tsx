@@ -1,8 +1,8 @@
 import { Card, Stack } from "@sanity/ui";
 import { LoggerLine } from "./line";
-import { TrelloApiItem } from "../../../types/trello.types";
+import { TrelloApiItemModified } from "../../../types/trello.types";
 
-export function LoggerComponent({ items }: { items: TrelloApiItem[] }) {
+export function LoggerComponent({ items }: { items: TrelloApiItemModified[] }) {
   return (
     <Card>
       <Stack space={3}>

@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { TrelloApiItem } from "../../types/trello.types";
+import { useState } from "react";
+import { TrelloApiItemModified } from "../../types/trello.types";
 import { fetchTrello } from "../../libs/trello";
 import { useSanity } from "../sanity/useSanity";
 
 export function useTrello() {
   const { handleCheckForExisting } = useSanity();
-  const [trelloData, setTrelloData] = useState<TrelloApiItem[]>([]);
+  const [trelloData, setTrelloData] = useState<TrelloApiItemModified[]>([]);
   const [isTrelloAuthorized, setIsTrelloAuthorized] = useState<boolean>(false);
   const [isTrelloFetching, setTrelloFetching] = useState<boolean>(false);
   const [isTrelloError, setTrelloError] = useState<string>();
@@ -22,6 +22,7 @@ export function useTrello() {
       const result = await handleCheckForExisting(item);
     }
 
+    // Set finished data
     setTrelloData(results);
     setTrelloFetching(false);
   }

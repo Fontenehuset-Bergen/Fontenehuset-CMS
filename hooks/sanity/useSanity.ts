@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useClient } from "sanity";
-import { TrelloApiItem, TrelloApiResponse } from "../../types/trello.types";
+import { TrelloApiItemModified } from "../../types/trello.types";
 import { checkForExisting, postData } from "../../libs/sanity";
 
 export function useSanity() {
@@ -9,11 +9,11 @@ export function useSanity() {
   const [isSanityError, setSanityError] = useState();
   const [isSanityPosting, setSanityPosting] = useState<boolean>(false);
 
-  async function handleCheckForExisting(item: TrelloApiItem) {
+  async function handleCheckForExisting(item: TrelloApiItemModified) {
     return await checkForExisting(client, item);
   }
 
-  async function handleSanityPost(data: TrelloApiItem[]) {
+  async function handleSanityPost(data: TrelloApiItemModified[]) {
     setSanityPosting(true);
 
     if (allowDuplicates) {

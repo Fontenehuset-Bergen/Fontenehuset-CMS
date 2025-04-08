@@ -1,5 +1,3 @@
-export type TrelloApiItemStatus = "duplicate" | "new" | "processed" | "failed";
-
 export interface TrelloApiItem {
   id: string;
   name: string;
@@ -14,7 +12,11 @@ export interface TrelloApiItem {
     }[];
   };
   attachments?: { url: string }[];
-  status?: TrelloApiItemStatus;
 }
 
-export interface TrelloApiResponse {}
+export type TrelloApiItemStatus = "duplicate" | "new" | "processed" | "failed";
+export interface TrelloApiItemModified extends TrelloApiItem {
+  status?: TrelloApiItemStatus;
+  include?: boolean;
+  modified?: Date;
+}

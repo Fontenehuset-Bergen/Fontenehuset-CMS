@@ -1,11 +1,5 @@
-import {
-  Box,
-  Card,
-  Flex,
-  Stack,
-  Text,
-} from "@sanity/ui";
-import { TrelloApiItem } from "../../types/trello.types";
+import { Box, Card, Flex, Stack, Text } from "@sanity/ui";
+import { TrelloApiItemModified } from "../../types/trello.types";
 import { LabelsInline } from "../lists/labels/inline";
 import { useEffect, useState } from "react";
 
@@ -15,7 +9,7 @@ export function MenuItemCard({
   labels,
   start,
   cover,
-}: TrelloApiItem) {
+}: TrelloApiItemModified) {
   const [time, setTime] = useState<Date | undefined>(undefined);
   const [image, setImage] = useState<string | undefined>(undefined);
 
@@ -42,7 +36,7 @@ export function MenuItemCard({
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover"
+                objectFit: "cover",
               }}
             />
           </Card>
@@ -65,7 +59,9 @@ export function MenuItemCard({
         {desc ? (
           <Text>{desc}</Text>
         ) : (
-          <Text muted style={{fontStyle: "italic"}}>Beskrivelse på matrett mangler</Text>
+          <Text muted style={{ fontStyle: "italic" }}>
+            Beskrivelse på matrett mangler
+          </Text>
         )}
       </Stack>
     </Card>

@@ -1,27 +1,20 @@
-import { useState } from "react";
-import { Box, Button, Card, Checkbox, Flex, Spinner, Text } from "@sanity/ui";
-import { DownloadIcon, AddDocumentIcon, UserIcon } from "@sanity/icons";
+import { Box, Card, Checkbox, Flex, Spinner, Text } from "@sanity/ui";
+import { DownloadIcon, AddDocumentIcon } from "@sanity/icons";
 import { LoggerComponent } from "../../components/lists/logger/container";
 import { ProcessStatusButton } from "../../components/buttons/processStatusButton";
-import { useTrello } from "../../hooks/trello/useTrello";
-import { useSanity } from "../../hooks/sanity/useSanity";
+import { useTrelloContext } from "../../context/trello/provider";
+import { useSanityContext } from "../../context/sanity/provider";
 
 export function TrelloImportPage() {
   const {
-    trelloData,
-    isTrelloAuthorized,
-    isTrelloError,
-    isTrelloFetching,
-    handleFetch,
-  } = useTrello();
-  const {
     allowDuplicates,
+    handleSanityPost,
     isSanityError,
     isSanityPosting,
-    handleSanityPost,
     setAllowDuplicates,
-  } = useSanity();
-  const [currentStage, setCurrentStage] = useState<string>("login"); // change logic to use isTrolloAuthorized
+  } = useSanityContext();
+  const { handleFetch, isTrelloError, isTrelloFetching, trelloData } =
+    useTrelloContext();
 
   function handlePost() {
     handleSanityPost(trelloData);
@@ -30,32 +23,7 @@ export function TrelloImportPage() {
   return (
     <Flex padding={4} gap={4} direction={"column"}>
       <Flex gap={4}>
-        <Card flex={1} padding={4} border muted={currentStage !== "login"}>
-          <Flex gap={4} direction={"column"} style={{ height: "100%" }}>
-            <Flex justify={"center"}>
-              <Text size={4}>Autorisasjon</Text>
-            </Flex>
-            <Text>
-              For at vi skal kunne få tilgang på funksjonalitet må du være
-              logget inn i nettleseren med en bruker som tilhører Fontenehuset
-              på Trello
-            </Text>
-            <Flex gap={2} align={"center"}>
-              <Text>Login status: ❌</Text>
-            </Flex>
-            <Box flex={1}></Box>
-            <Button
-              onClick={() => setCurrentStage("fetch")}
-              disabled={currentStage !== "login"}
-              text='Sjekk login'
-              iconRight={UserIcon}
-              space={3}
-              fontSize={4}
-              justify={"space-between"}
-            />
-          </Flex>
-        </Card>
-        <Card flex={1} padding={4} border muted={currentStage === "login"}>
+        <Card flex={1} padding={4} border muted={trelloData.length > 0}>
           <Flex gap={4} direction={"column"} style={{ height: "100%" }}>
             <Flex justify={"center"}>
               <Text size={4}>Trello</Text>
@@ -67,7 +35,7 @@ export function TrelloImportPage() {
             </Text>
             <Box flex={1}></Box>
             <ProcessStatusButton
-              disabled={currentStage === "login"}
+              disabled={trelloData.length > 0}
               onClick={handleFetch}
               loading={isTrelloFetching}
               icon={DownloadIcon}
