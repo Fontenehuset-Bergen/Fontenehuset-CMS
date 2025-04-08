@@ -17,11 +17,11 @@ export function StatusLabel({
   switch (true) {
     case status === "duplicate":
       tone = "caution";
-      message = "Duplikat";
+      message = "Eksisterer allerede";
       break;
     case status === "processed":
       tone = "primary";
-      message = "Behandlet";
+      message = "Lagt til!";
       break;
     case status === "failed":
       tone = "critical";

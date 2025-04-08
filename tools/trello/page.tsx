@@ -1,5 +1,9 @@
 import { Box, Card, Checkbox, Flex, Spinner, Text } from "@sanity/ui";
-import { DownloadIcon, AddDocumentIcon } from "@sanity/icons";
+import {
+  DownloadIcon,
+  AddDocumentIcon,
+  DocumentRemoveIcon,
+} from "@sanity/icons";
 import { LoggerComponent } from "../../components/lists/logger/container";
 import { ProcessStatusButton } from "../../components/buttons/processStatusButton";
 import { useTrelloContext } from "../../context/trello/provider";
@@ -11,14 +15,12 @@ export function TrelloImportPage() {
     handleSanityPost,
     isSanityError,
     isSanityPosting,
+    isSanityPruning,
     setAllowDuplicates,
+    handleSanityPrune,
   } = useSanityContext();
   const { handleFetch, isTrelloError, isTrelloFetching, trelloData } =
     useTrelloContext();
-
-  function handlePost() {
-    handleSanityPost(trelloData);
-  }
 
   return (
     <Flex padding={4} gap={4} direction={"column"}>
@@ -68,7 +70,7 @@ export function TrelloImportPage() {
             <Box flex={1}></Box>
             <ProcessStatusButton
               disabled={trelloData.length === 0}
-              onClick={handlePost}
+              onClick={() => handleSanityPost(trelloData)}
               loading={isSanityPosting}
               icon={AddDocumentIcon}
               // todo: update defaultText to say posted then done
@@ -78,6 +80,25 @@ export function TrelloImportPage() {
                   : "Fullfør tidligere steg"
               }
               activeText='Oppdaterer...'
+            />
+          </Flex>
+        </Card>
+        <Card flex={1} padding={4} border muted={trelloData.length === 0}>
+          <Flex gap={4} direction={"column"} style={{ height: "100%" }}>
+            <Flex justify={"center"}>
+              <Text size={4}>Sanity Cleanup</Text>
+            </Flex>
+            <Text>
+              Her kan du slette gamle lunch retter for å holde sanity ryddig
+            </Text>
+            <Box flex={1}></Box>
+            <ProcessStatusButton
+              disabled={trelloData.length === 0}
+              onClick={handleSanityPrune}
+              loading={isSanityPruning}
+              icon={DocumentRemoveIcon}
+              defaultText='Slett data'
+              activeText='Sletter...'
             />
           </Flex>
         </Card>

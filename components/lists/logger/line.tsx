@@ -30,7 +30,7 @@ export function LoggerLine(lunchDish: TrelloApiItemModified) {
           portal
         >
           <Text>
-            {lunchDish.name} {lunchDish.include ? "true" : "false"}
+            {lunchDish.name}
           </Text>
         </Tooltip>
         {lunchDish.labels && <LabelsInline labels={lunchDish.labels} />}
