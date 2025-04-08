@@ -20,16 +20,20 @@ export function StatusLabel({
       message = "Duplikat";
       break;
     case status === "processed":
-      tone = "positive";
+      tone = "primary";
       message = "Behandlet";
       break;
     case status === "failed":
       tone = "critical";
       message = "Feil";
     default:
-      tone = "primary";
+      tone = "positive";
       message = "Ny";
   }
 
-  return <Badge tone='positive'>{message}</Badge>;
+  return (
+    <Badge tone={tone} paddingLeft={2} paddingRight={2}>
+      {message}
+    </Badge>
+  );
 }
