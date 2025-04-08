@@ -1065,6 +1065,13 @@
           "type": "string"
         }
       },
+      "id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "name": {
         "type": "objectAttribute",
         "value": {
@@ -1155,6 +1162,13 @@
               }
             }
           }
+        },
+        "optional": true
+      },
+      "trelloImage": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       }

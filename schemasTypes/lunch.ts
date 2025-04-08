@@ -8,8 +8,11 @@ export default {
     {
       name: "id",
       title: "Trello ID",
-      hidden: true,
+      description:
+        "Url i dette feltet kommer fra Trello API import tool og kan ikke manuelt endres.",
       type: "string",
+      hidden: true,
+      readOnly: true,
     },
     {
       name: "name",
@@ -52,6 +55,14 @@ export default {
       name: "image",
       title: "Bilde",
       type: "image",
+    },
+    {
+      name: "trelloImage",
+      title: "Bilde fra trello (fallback)",
+      description:
+        "Url i dette feltet kommer fra Trello API import tool og kan ikke manuelt bli oppdatert. Hvis du ønsker å sitte et bilde så kan du bruke feltet over, det feltet blir sjekket først i appen.",
+      type: "string",
+      readOnly: true,
     },
   ],
 };

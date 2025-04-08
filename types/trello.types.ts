@@ -1,3 +1,5 @@
+import { SanityDocument } from "sanity";
+
 export interface TrelloApiItem {
   id: string;
   name: string;
@@ -13,6 +15,15 @@ export interface TrelloApiItem {
   };
   attachments?: { url: string }[];
 }
+
+export interface SanityApiItem extends SanityDocument {
+  id: string;
+  name: string;
+  desc: string;
+  allergies?: string[];
+  trelloImage: string
+}
+
 
 export type TrelloApiItemStatus = "duplicate" | "new" | "processed" | "failed";
 export interface TrelloApiItemModified extends TrelloApiItem {
