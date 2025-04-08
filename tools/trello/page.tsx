@@ -8,6 +8,7 @@ import { LoggerComponent } from "../../components/lists/logger/container";
 import { ProcessStatusButton } from "../../components/buttons/processStatusButton";
 import { useTrelloContext } from "../../context/trello/provider";
 import { useSanityContext } from "../../context/sanity/provider";
+import { TrelloApiItemModified } from "../../types/trello.types";
 
 export function TrelloImportPage() {
   const {
@@ -20,8 +21,19 @@ export function TrelloImportPage() {
     setAllowDuplicates,
     handleSanityPrune,
   } = useSanityContext();
-  const { handleFetch, isTrelloError, isTrelloFetching, trelloData } =
-    useTrelloContext();
+  const {
+    handleFetch,
+    setTrelloData,
+    isTrelloError,
+    isTrelloFetching,
+    trelloData,
+  } = useTrelloContext();
+
+  async function handleSanityPruneResult() {
+    const result: string[] = await handleSanityPrune();
+    const handled: TrelloApiItemModified[] = trelloData.map((item) => result.includes(item.id) ? {...item, status: "deleted"} : item);
+    setTrelloData(handled)
+  }
 
   return (
     <Flex padding={4} gap={4} direction={"column"}>
@@ -86,7 +98,7 @@ export function TrelloImportPage() {
             <Box flex={1}></Box>
             <ProcessStatusButton
               disabled={trelloData.length === 0 || isSanityPruned}
-              onClick={handleSanityPrune}
+              onClick={handleSanityPruneResult}
               loading={isSanityPruning}
               icon={DocumentRemoveIcon}
               defaultText={isSanityPruned ? "Data slettet" : "Slett data"}

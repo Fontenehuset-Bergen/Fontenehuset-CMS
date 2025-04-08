@@ -133,12 +133,15 @@ export function useSanity() {
       const date = new Date();
 
       // todo: add date lookup
-      const result = client.delete({ query: `*[_type == "lunchDishes"]` });
+      const result = await client.delete({
+        query: `*[_type == "lunchDishes"]`,
+      });
       // const result = client.fetch(`*[_type == "lunchDishes" && ]`)
-      console.log(result);
       setSanityPruned(true);
+      return result.results.map(
+        (item: Record<string, any>) => item.document.id,
+      );
     } catch (err) {
-      console.log(err);
       if (typeof err === "string") {
         setSanityError(err);
       }

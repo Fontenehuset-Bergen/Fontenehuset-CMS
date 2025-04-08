@@ -25,7 +25,7 @@ export interface SanityApiItem extends SanityDocument {
   trelloImage: string;
 }
 
-export type TrelloApiItemStatus = "duplicate" | "new" | "processed" | "failed";
+export type TrelloApiItemStatus = "duplicate" | "new" | "processed" | "failed" | "deleted";
 export interface TrelloApiItemModified extends TrelloApiItem {
   status?: TrelloApiItemStatus;
   include?: boolean;

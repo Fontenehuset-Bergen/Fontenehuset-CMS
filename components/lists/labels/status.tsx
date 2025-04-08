@@ -26,6 +26,11 @@ export function StatusLabel({
     case status === "failed":
       tone = "critical";
       message = "Feil";
+      break;
+    case status === "deleted":
+      tone = "critical";
+      message = "Slettet";
+      break;
     default:
       tone = "positive";
       message = "Ny";
