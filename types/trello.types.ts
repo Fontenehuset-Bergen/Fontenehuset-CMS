@@ -4,20 +4,16 @@ export interface TrelloApiItem {
   id: string;
   name: string;
   desc: string;
-  due?: Date | null;
-  labels?: {
+  start: string | Date;
+  labels: {
     name: string;
   }[];
-  cover?: {
+  cover: {
     scaled: {
-      id: string;
       url: string;
     }[];
   };
-  attachments?: {
-    id: string;
-    url: string;
-  }[];
+  attachments: { url: string }[];
   status: TrelloApiItemStatus;
 }
 
