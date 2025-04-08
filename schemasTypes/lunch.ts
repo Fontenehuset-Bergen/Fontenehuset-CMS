@@ -16,9 +16,20 @@ export default {
     },
     {
       name: "name",
-      title: "Navn på lunchrett",
+      title: "Navn på matrett",
       type: "string",
       validation: (Rule: Rule) => Rule.required().min(3).max(100),
+    },
+    {
+      name: "date",
+      title: "Dato",
+      type: "datetime",
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: "desc",
+      title: "Beskrivelse",
+      type: "text",
     },
     {
       name: "allergies",
@@ -45,11 +56,6 @@ export default {
           { title: "Svoveldioksid og sulfitter", value: "svovel" },
         ],
       },
-    },
-    {
-      name: "desc",
-      title: "Beskrivelse",
-      type: "text",
     },
     {
       name: "image",

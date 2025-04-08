@@ -19,11 +19,11 @@ export interface TrelloApiItem {
 export interface SanityApiItem extends SanityDocument {
   id: string;
   name: string;
+  date: Date;
   desc: string;
   allergies?: string[];
-  trelloImage: string
+  trelloImage: string;
 }
-
 
 export type TrelloApiItemStatus = "duplicate" | "new" | "processed" | "failed";
 export interface TrelloApiItemModified extends TrelloApiItem {

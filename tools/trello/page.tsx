@@ -16,6 +16,7 @@ export function TrelloImportPage() {
     isSanityError,
     isSanityPosting,
     isSanityPruning,
+    isSanityPruned,
     setAllowDuplicates,
     handleSanityPrune,
   } = useSanityContext();
@@ -58,15 +59,6 @@ export function TrelloImportPage() {
             <Text>
               Her kan du laste opp resultatet du mottok fra Trello tidligere
             </Text>
-            <Flex gap={2} align={"center"}>
-              <Checkbox
-                checked={allowDuplicates}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setAllowDuplicates(e.target.checked)
-                }
-              />
-              <Text>Tillat duplikater</Text>
-            </Flex>
             <Box flex={1}></Box>
             <ProcessStatusButton
               disabled={trelloData.length === 0}
@@ -93,11 +85,11 @@ export function TrelloImportPage() {
             </Text>
             <Box flex={1}></Box>
             <ProcessStatusButton
-              disabled={trelloData.length === 0}
+              disabled={trelloData.length === 0 || isSanityPruned}
               onClick={handleSanityPrune}
               loading={isSanityPruning}
               icon={DocumentRemoveIcon}
-              defaultText='Slett data'
+              defaultText={isSanityPruned ? "Data slettet" : "Slett data"}
               activeText='Sletter...'
             />
           </Flex>

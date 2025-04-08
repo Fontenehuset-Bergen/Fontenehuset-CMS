@@ -20,22 +20,20 @@ export function useTrello() {
     setTrelloFetching(true);
 
     try {
-      // Query string for trello api
-      // const QUERY = `https://api.trello.com/1/boards/${trelloCredentials.trelloBoardId}/cards?open&fields=id,name,start,desc,labels,cover&attachments=true&key=${trelloCredentials.trelloApiKey}&token=${trelloCredentials.trelloToken}`;
+      /* // Query string for trello api
+      const QUERY = `https://api.trello.com/1/boards/${trelloCredentials.trelloBoardId}/cards?open&fields=id,name,start,desc,labels,cover&attachments=true&key=${trelloCredentials.trelloApiKey}&token=${trelloCredentials.trelloToken}`;
 
       // Set headers for get method
-      /* const params = {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    }; */
+      const params = {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      };
 
       // Processing request and converting result into an object
-      /* const result = await fetch(QUERY, params);
-    const parsed: TrelloApiItem[] = await result.json(); */
-
-      // await new Promise((resolve) => setTimeout(resolve, 2000));
+      const result = await fetch(QUERY, params);
+      const parsed: TrelloApiItem[] = await result.json(); */
 
       const result: TrelloApiItemModified[] = JSON.parse(
         JSON.stringify(testData),

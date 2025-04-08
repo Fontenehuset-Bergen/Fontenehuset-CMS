@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useClient } from "sanity";
-import { TrelloApiItemModified } from "../../types/trello.types";
-import { LunchDishes } from "../../export/sanity.types";
+import { SanityApiItem, TrelloApiItemModified } from "../../types/trello.types";
 
 export function useSanity() {
   const client = useClient({ apiVersion: "2025-02-10" });
@@ -9,24 +8,34 @@ export function useSanity() {
   const [isSanityError, setSanityError] = useState<string>("");
   const [isSanityPosting, setSanityPosting] = useState<boolean>(false);
   const [isSanityPruning, setSanityPruning] = useState<boolean>(false);
+  const [isSanityPruned, setSanityPruned] = useState<boolean>(false);
 
   async function handleCheckForExisting(item: TrelloApiItemModified) {
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    // todo: convert to check for ID instead
-    const result: TrelloApiItemModified[] = await client.fetch(
-      `*[_type == "lunchDishes" && id match "${item.id}"] {}`,
-    );
+    try {
+      // Delay executions to avoid timeouts
+      await new Promise((resolve) => setTimeout(resolve, 100));
 
-    // Assign duplicate status
-    if (result.length) {
-      item.status = "duplicate";
-      item.include = false;
-    } else {
-      item.status = "new";
-      item.include = true;
+      // todo: convert to check for ID instead
+      const result: TrelloApiItemModified[] = await client.fetch(
+        `*[_type == "lunchDishes" && id match "${item.id}"] {}`,
+      );
+
+      // Assign duplicate status
+      if (result.length) {
+        item.status = "duplicate";
+        item.include = false;
+      } else {
+        item.status = "new";
+        item.include = true;
+      }
+
+      return item;
+    } catch (err) {
+      console.log(err);
+      if (typeof err === "string") {
+        setSanityError(err);
+      }
     }
-
-    return item;
   }
 
   async function handleSanityPost(data: TrelloApiItemModified[]) {
@@ -48,14 +57,20 @@ export function useSanity() {
 
       try {
         // Create basic document
-        const document: Partial<LunchDishes> = {
+        const document: Partial<SanityApiItem> = {
           _type: "lunchDishes",
           name: current.name,
           id: current.id,
           desc: current.desc,
         };
 
-        // Add allergies
+        // Handle date
+        if (current.start) {
+          const date = new Date(current.start);
+          document.date = date;
+        }
+
+        // Handle allergies
         if (current.labels) {
           document.allergies = current.labels.reduce<string[]>(
             (a, current) => [...a, current.name.toLowerCase()],
@@ -63,39 +78,35 @@ export function useSanity() {
           );
         }
 
-
-        // Handle image blob
+        // Handle image
         const hasImage = current.attachments?.at(0);
         if (hasImage?.url) {
+          /* // Fetch image and details from trello
+          const extension = hasImage.url.split(".").pop()
           const imageResponse = await fetch(hasImage.url)
           const imageBlob = imageResponse.blob()
 
-          const extension = hasImage.url.split(".").pop()
-          console.log(imageResponse);
-          
-
-          /* const sanityAssetResponse = await client.assets.upload('image', imageBlob, {
+          // Upload image to sanity assets and attach to document
+          const sanityAssetResponse = await client.assets.upload('image', imageBlob, {
             filename: 'uploaded-image.jpg',
           }); */
+
+          // Temporary solution due to CORS problems
+          document.trelloImage = hasImage.url;
         }
 
-        /* const response = await client.create({
-          _type: "lunchDishes",
-          name: current.name,
-          id: current.id,
-          desc: current.desc,
-          allergies: current.labels?.reduce<string[]>(
-            (a, current) => [...a, current.name.toLowerCase()],
-            [],
-          ),
-        }); */
+        // Find solution for Partial constructor earlier
+        // Create document
+        const response = await client.create(
+          JSON.parse(JSON.stringify(document)),
+        );
 
         // Mark status and push to result
-        /* if (response._id) {
+        if (response._id) {
           current.status = "processed";
         } else {
           current.status = "failed";
-        } */
+        }
 
         result.push(current);
 
@@ -103,6 +114,9 @@ export function useSanity() {
         await new Promise((resolve) => setTimeout(resolve, 500));
       } catch (err) {
         console.log(err);
+        if (typeof err === "string") {
+          setSanityError(err);
+        }
       }
     }
 
@@ -112,12 +126,25 @@ export function useSanity() {
 
   async function handleSanityPrune() {
     setSanityPruning(true);
-    const date = new Date();
+    try {
+      // Delay executions to avoid timeouts
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    const result = client.delete({ query: `*[_type == "lunchDishes"]` });
-    // const result = client.fetch(`*[_type == "lunchDishes" && ]`)
-    console.log(result);
-    setSanityPruning(false);
+      const date = new Date();
+
+      // todo: add date lookup
+      const result = client.delete({ query: `*[_type == "lunchDishes"]` });
+      // const result = client.fetch(`*[_type == "lunchDishes" && ]`)
+      console.log(result);
+      setSanityPruned(true);
+    } catch (err) {
+      console.log(err);
+      if (typeof err === "string") {
+        setSanityError(err);
+      }
+    } finally {
+      setSanityPruning(false);
+    }
   }
 
   return {
@@ -125,6 +152,7 @@ export function useSanity() {
     isSanityError,
     isSanityPosting,
     isSanityPruning,
+    isSanityPruned,
     handleCheckForExisting,
     handleSanityPost,
     setAllowDuplicates,
