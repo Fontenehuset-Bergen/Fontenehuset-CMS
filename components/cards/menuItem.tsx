@@ -23,7 +23,7 @@ export function MenuItemCard({
     if (start) {
       setTime(new Date(start));
     }
-    if (cover.scaled?.length) {
+    if (cover?.scaled.length) {
       const firstImage = cover.scaled.at(1);
       setImage(firstImage?.url);
     }
