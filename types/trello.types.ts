@@ -4,17 +4,17 @@ export interface TrelloApiItem {
   id: string;
   name: string;
   desc: string;
-  start: string | Date;
-  labels: {
+  start: string | Date | undefined;
+  labels?: {
     name: string;
   }[];
-  cover: {
+  cover?: {
     scaled: {
       url: string;
     }[];
   };
-  attachments: { url: string }[];
-  status: TrelloApiItemStatus;
+  attachments?: { url: string }[];
+  status?: TrelloApiItemStatus;
 }
 
 export interface TrelloApiResponse {}
