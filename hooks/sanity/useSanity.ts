@@ -8,7 +8,7 @@ export function useSanity() {
   const [isSanityError, setSanityError] = useState<string>("");
   const [isSanityPosting, setSanityPosting] = useState<boolean>(false);
   const [isSanityPruning, setSanityPruning] = useState<boolean>(false);
-  const [isSanityPruned, setSanityPruned] = useState<boolean>(false);
+  const [isSanityPruned, setSanityPruned] = useState<number>(0);
 
   async function handleCheckForExisting(item: TrelloApiItemModified) {
     try {
@@ -125,21 +125,31 @@ export function useSanity() {
   }
 
   async function handleSanityPrune() {
+    setSanityPruned(0);
     setSanityPruning(true);
     try {
       // Delay executions to avoid timeouts
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // todo: add date lookup
-      const result = await client.delete({
-        query: `*[_type == "lunchDishes" && date < now()]`,
-      });
-      setSanityPruned(true);
-      return result.results.map(
-        (item: Record<string, any>) => item.document.id,
-      );
+      const result: SanityApiItem[] = await client
+        .delete({
+          query: `*[_type == "lunchDishes" && dateTime(date) < dateTime(now()) - 60*60*24]`,
+        })
+        .then((data) => data.results);
+
+      // Return result of deletion and update pruned #
+      if (result.length) {
+        setSanityPruned(result.length as number);
+        return result.map(
+          (item: Record<string, any>) => item.document.id,
+        ) as string[];
+      }
+
+      // Return empty array if nothing was deleted
+      return [];
     } catch (err) {
-      console.log(err)
+      console.log(err);
       if (typeof err === "string") {
         setSanityError(err);
       }

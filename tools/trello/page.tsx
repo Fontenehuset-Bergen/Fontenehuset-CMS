@@ -30,9 +30,12 @@ export function TrelloImportPage() {
   } = useTrelloContext();
 
   async function handleSanityPruneResult() {
-    const result: string[] = await handleSanityPrune();
-    const handled: TrelloApiItemModified[] = trelloData.map((item) => result.includes(item.id) ? {...item, status: "deleted"} : item);
-    setTrelloData(handled)
+    const result = await handleSanityPrune();
+    if (!result) return;
+    const handled: TrelloApiItemModified[] = trelloData.map((item) =>
+      result.includes(item.id) ? { ...item, status: "deleted" } : item,
+    );
+    setTrelloData(handled);
   }
 
   return (
@@ -97,11 +100,15 @@ export function TrelloImportPage() {
             </Text>
             <Box flex={1}></Box>
             <ProcessStatusButton
-              disabled={trelloData.length === 0 || isSanityPruned}
+              disabled={trelloData.length === 0 || isSanityPruned > 0}
               onClick={handleSanityPruneResult}
               loading={isSanityPruning}
               icon={DocumentRemoveIcon}
-              defaultText={isSanityPruned ? "Data slettet" : "Slett data"}
+              defaultText={
+                isSanityPruned > 0
+                  ? `${isSanityPruned} dokument slettet`
+                  : "Slett gammel data"
+              }
               activeText='Sletter...'
             />
           </Flex>
