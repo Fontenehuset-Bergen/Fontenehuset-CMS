@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SANITY_AUTH_TOKEN: ${{ secrets.SANITY_DEPLOY_TOKEN }}
+      SANITY_STUDIO_TRELLO_API_KEY: ${{ secrets.SANITY_STUDIO_TRELLO_API_KEY }}
+      SANITY_STUDIO_TRELLO_TOKEN: ${{ secrets.SANITY_STUDIO_TRELLO_TOKEN }}
+      SANITY_STUDIO_TRELLO_BOARD_ID: ${{ secrets.SANITY_STUDIO_TRELLO_BOARD_ID }}
 
     steps:
       - uses: actions/checkout@v4

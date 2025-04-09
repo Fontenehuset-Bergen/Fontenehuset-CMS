@@ -198,9 +198,11 @@ export type LunchDishes = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  id?: string;
   name?: string;
-  allergies?: Array<string>;
+  date?: string;
   desc?: string;
+  allergies?: Array<string>;
   image?: {
     asset?: {
       _ref: string;
@@ -213,6 +215,7 @@ export type LunchDishes = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  trelloImage?: string;
 };
 
 export type Kafe = {
