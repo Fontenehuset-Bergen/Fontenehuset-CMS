@@ -106,7 +106,7 @@ export function TrelloImportPage() {
               icon={DocumentRemoveIcon}
               defaultText={
                 isSanityPruned > 0
-                  ? `${isSanityPruned} dokument slettet`
+                  ? `${isSanityPruned} dokument${isSanityPruned > 1 ? "er" : ""} slettet`
                   : "Slett gammel data"
               }
               activeText='Sletter...'

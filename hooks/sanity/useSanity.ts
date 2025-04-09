@@ -134,7 +134,7 @@ export function useSanity() {
       // todo: add date lookup
       const result: SanityApiItem[] = await client
         .delete({
-          query: `*[_type == "lunchDishes" && dateTime(date) < dateTime(now()) - 60*60*24]`,
+          query: `*[_type == "lunchDishes" && dateTime(date) < dateTime(now()) - 60*60*24*7]`,
         })
         .then((data) => data.results);
 
