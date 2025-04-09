@@ -20,7 +20,7 @@ export function useTrello() {
     setTrelloFetching(true);
 
     try {
-      /* // Query string for trello api
+      // Query string for trello api
       const QUERY = `https://api.trello.com/1/boards/${trelloCredentials.trelloBoardId}/cards?open&fields=id,name,start,desc,labels,cover&attachments=true&key=${trelloCredentials.trelloApiKey}&token=${trelloCredentials.trelloToken}`;
 
       // Set headers for get method
@@ -33,12 +33,12 @@ export function useTrello() {
 
       // Processing request and converting result into an object
       const result = await fetch(QUERY, params);
-      const parsed: TrelloApiItem[] = await result.json(); */
+      const parsed: TrelloApiItemModified[] = await result.json();
 
-      const result: TrelloApiItemModified[] = JSON.parse(
+      /* const result: TrelloApiItemModified[] = JSON.parse(
         JSON.stringify(testData),
-      );
-      const filtered = result.filter(
+      ); */
+      const filtered = parsed.filter(
         (item) => !item.name.includes("http") && item.start,
       );
 
