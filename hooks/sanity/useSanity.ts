@@ -130,18 +130,16 @@ export function useSanity() {
       // Delay executions to avoid timeouts
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      const date = new Date();
-
       // todo: add date lookup
       const result = await client.delete({
-        query: `*[_type == "lunchDishes"]`,
+        query: `*[_type == "lunchDishes" && date < now()]`,
       });
-      // const result = client.fetch(`*[_type == "lunchDishes" && ]`)
       setSanityPruned(true);
       return result.results.map(
         (item: Record<string, any>) => item.document.id,
       );
     } catch (err) {
+      console.log(err)
       if (typeof err === "string") {
         setSanityError(err);
       }
