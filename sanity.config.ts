@@ -3,6 +3,7 @@ import { structureTool } from "sanity/structure";
 import { RobotIcon, RocketIcon } from "@sanity/icons";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemasTypes";
+import { trelloImportTool } from "./tools/trello";
 
 export default defineConfig([
   {
@@ -14,6 +15,7 @@ export default defineConfig([
     subtitle: "production dataset",
     icon: RobotIcon,
     plugins: [structureTool(), visionTool()],
+    tools: [trelloImportTool()],
     schema: {
       types: schemaTypes,
     },
@@ -27,6 +29,7 @@ export default defineConfig([
     subtitle: "development dataset",
     icon: RocketIcon,
     plugins: [structureTool(), visionTool()],
+    tools: [trelloImportTool()],
     schema: {
       types: schemaTypes,
     },

@@ -1065,7 +1065,28 @@
           "type": "string"
         }
       },
+      "id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "name": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "date": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "desc": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -1079,13 +1100,6 @@
           "of": {
             "type": "string"
           }
-        },
-        "optional": true
-      },
-      "desc": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
         },
         "optional": true
       },
@@ -1155,6 +1169,13 @@
               }
             }
           }
+        },
+        "optional": true
+      },
+      "trelloImage": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       }
