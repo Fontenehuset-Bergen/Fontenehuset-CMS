@@ -3,7 +3,7 @@ import { Rule } from "sanity";
 export default {
   name: "gallery",
   type: "document",
-  title: "Bilde Galleri v3",
+  title: "Bilde Galleri",
   fields: [
     {
       name: "title",
@@ -21,6 +21,12 @@ export default {
           return true;
         }).error(),
       ],
+    },
+    {
+      type: "text",
+      name: "description",
+      title: "Beskrivelse",
+      description: "Her kan du skrive litt om hva bildegalleriet inneholder, e.g hvis bildene er fra en tur kan du skrive litt om turen."
     },
     {
       name: "images",
