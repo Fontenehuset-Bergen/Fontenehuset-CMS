@@ -6,28 +6,41 @@ export default {
   title: "Turer",
   fields: [
     {
-      name: "mainhikeImage",
       type: "image",
+      name: "mainhikeImage",
       title: "Hovedturbilde",
-    },
-    {
-      name: "placeName",
-      type: "string",
-      title: "Tursted",
       description:
-        "Navn på denne turen, dette kan gjerne være et internt kallenavn eller navn på område",
-      validation: (Rule: Rule) => Rule.required().min(10).max(30),
-    },
-    {
-      name: "date",
-      type: "datetime",
-      title: "Dato",
+        "Bruk et bilde som representerer turen, gjerne fra området. Blir vist over tittel i applikasjonen",
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      title: "Vanskelighetsgrad",
-      name: "difficulty",
+      type: "datetime",
+      name: "date",
+      title: "Dato",
+      description:
+        "Bruk tidspunket hvor oppmøte er ønsket",
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
       type: "string",
+      name: "placeName",
+      title: "Tursted",
+      description:
+        "Navn på denne turen slik den skal vises i applikasjonen, dette kan gjerne være et internt kallenavn eller navn på område",
+      validation: (Rule: Rule) => Rule.required().min(10).max(30),
+    },
+    {
+      name: "description",
+      type: "text",
+      title: "Turbeskrivelse",
+      description: "Her kan du skrive en detaljert beskrivelse av turen",
+    },
+    {
+      type: "string",
+      name: "difficulty",
+      title: "Vanskelighetsgrad",
+      description:
+        "Hvor vanskelig er det å gjennomføre turen. Bruk DNT sin gradering hvis mulig.",
       options: {
         list: [
           { title: "Vanskelig", value: "vanskelig" },
@@ -36,51 +49,81 @@ export default {
         ],
         layout: "radio",
       },
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
+      type: "string", // todo: endre til number og ligg på input validering
       name: "timeUse",
-      type: "string",
       title: "Tidsbruk",
+      description:
+        "Hvor lenge varer turen, oppgitt i timer. Du kan bruke desimaler, e.g 3.5",
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
+      type: "string", // todo: endre til number og ligg på input validering
       name: "height",
-      type: "string",
       title: "Høyde",
+      description: "Hvor stor høydeforskjell er turen, oppgitt i meter",
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
+      type: "string", // todo: endre til number og ligg på input validering
       name: "distance",
-      type: "string",
       title: "Distanse",
+      description: "Hvor langt går turen, oppgitt i kilometer",
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
+      type: "string", // todo: konverter til yr.no integrering
       name: "weather",
-      type: "string",
       title: "Vær",
+      description:
+        "Hvis værvarsel er tilgengelig for denne turen kan du skrive et kort sammendrag her",
+      validation: (Rule: Rule) =>
+        Rule.max(20).warning(
+          "Dette feltet er presset på plass og bør ha korte setninger",
+        ),
     },
     {
-      name: "description",
       type: "string",
-      title: "Turbeskrivelse",
-    },
-    {
       name: "access",
-      type: "string",
       title: "Adkomst",
+      description:
+        "Hvor skal deltagerne møte opp og hvordan kommer dere fram til tur området",
     },
     {
-      name: "placesStop",
       type: "string",
+      name: "placesStop",
       title: "Stoppesteder",
+      description: "Eventuelle pause eller stoppe steder under turen",
     },
     {
-      name: "destinationImage",
+      type: "string",
+      name: "endpoint",
+      title: "Endepunkt",
+      description:
+        "Hvor ender turen opp når vi er ferdig og hvordan kommer deltagerene seg hjem",
+    },
+    {
       type: "image",
-      title: "Destinasjonsbilde",
+      name: "routeImage",
+      title: "Løype",
+      description:
+        "Her kan du laste opp et kart (bilde) av turløypen mens vi jobber med integrering med ut.no",
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: "clothingEquipment",
+      type: "image",
+      name: "destinationImage",
+      title: "Destinasjonsbilde",
+      description: "Her kan du laste opp et bilde som er tatt i området",
+    },
+    {
       type: "array",
+      name: "clothingEquipment",
       title: "Klær og utstyr",
+      description:
+        "Her kan du laste opp eller velge bilder av tur-utstyr fra vårt galleri",
       of: [
         {
           type: "object",
@@ -103,14 +146,11 @@ export default {
       ],
     },
     {
-      name: "routeImage",
-      type: "image",
-      title: "Løype",
-    },
-    {
-      name: "hikeImages",
       type: "array",
+      name: "hikeImages",
       title: "Bilder fra turen",
+      description:
+        "Etter turen har blitt gjennomført kan du laste opp bilder i dette feltet for å opprette et bildegalleri i applikasjonen.",
       of: [
         {
           name: "image",
