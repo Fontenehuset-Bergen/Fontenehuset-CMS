@@ -79,7 +79,7 @@ Skriv ned et funn én gang, der neste person vil lete etter det.
 ## Gotchas
 
 - **Appen leser disse dataene.** Endrer du et felt, en verdi eller en dokumenttype, kan mobilappen slutte å vise innholdet. Sjekk hvordan appen bruker feltet først.
-- **Verdier i `options.list` er lagret data.** Endrer du en verdi (f.eks. «Kjøkken»), passer ikke eksisterende dokumenter lenger. Det krever migrering (FHS-03, FHS-25).
+- **Verdier i `options.list` er lagret data.** Endrer du en verdi (f.eks. «Kjøkken»), passer ikke eksisterende dokumenter lenger. Det krever migrering (FHS-25).
 - **`SANITY_STUDIO_*`-variabler havner i nettleseren.** Alle som åpner Studio kan lese dem. Aldri legg hemmeligheter der (FHS-01).
 - **Mappa heter `schemasTypes/`** (skrivefeil for `schemaTypes`). Ikke gi den nytt navn uten teamet. `sanity-typegen.json` og README peker feil (FHS-21).
 - **ESLint 9 leser ikke `.eslintrc`.** Lint virker ikke før det finnes en `eslint.config.mjs` (FHS-23).

@@ -28,7 +28,7 @@ export default {
           { title: "Møter", value: "Møter" },
           { title: "Kjøkken", value: "Kjøkken" },
           { title: "Ut av huset", value: "Ut av huset" },
-          { title: "Onsdager", value: "Kjøkken" },
+          { title: "Onsdager", value: "Onsdager" },
           { title: "Spesielle møter", value: "Spesielle møter" },
           { title: "Workshops", value: "Workshops" },
           { title: "Tur", value: "Tur" },
