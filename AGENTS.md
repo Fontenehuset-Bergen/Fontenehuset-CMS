@@ -6,12 +6,11 @@ Denne fila har reglene som alle AI-kodeverktøy skal følge i dette repoet. Clau
 
 ## Stack
 
-- Sanity Studio 4 (`^4.6.1`), med `@sanity/ui` og `@sanity/vision`
+- Sanity Studio 4 (4.22.1 etter `npm audit fix` 24.10.2026), med `@sanity/ui` og `@sanity/vision`
 - React 19.1.1, styled-components 6
 - TypeScript 5 (`^5.1.6`)
 - Prettier (oppsettet ligger i `package.json`, bl.a. enkle anførselstegn i JSX)
 - Trello API (via `hooks/trello/`)
-
 ## Kommandoer
 
 ```
@@ -87,3 +86,7 @@ Skriv ned et funn én gang, der neste person vil lete etter det.
 - **ESLint 9 leser ikke `.eslintrc`.** Lint virker ikke før det finnes en `eslint.config.mjs` (FHS-23).
 - **Opprydding i Trello-verktøyet sletter alle lunsjretter eldre enn 7 dager**, også de som er laget manuelt (FHS-15).
 - **Deploy kjører uten validering** (FHS-26).
+- **Kjør aldri `npm audit fix --force`.** Den gjør store versjonshopp som kan ødelegge Studio. Vanlig `npm audit fix` er greit. 9 varsler (6 høy, 3 moderat) er igjen per 24.10.2026, men alle ligger i CLI- og byggeverktøy, ikke i selve Studio. De forsvinner ikke helt, heller ikke på nyeste Sanity.
+- **`@sanity/vision` må ha samme versjon som `sanity`.** Ellers spør `npm run build` om å oppgradere. Installer da med `npm install --legacy-peer-deps @sanity/vision@<versjon>` (sjekket mot Sanity 4.22.1).
+- **Ufarlige varsler:** `ERESOLVE overriding peer dependency`, «Update available» til en ny hovedversjon, og at esbuild sitt install-script blir blokkert. Build virker likevel. Oppgradering til Sanity 5 eller nyere er en egen teamavklaring.
+- **Det publiserte Studio oppdaterer seg selv** (`autoUpdates: true`) og henter Sanity-kode fra Sanitys CDN. Det kan altså kjøre en annen Sanity-versjon enn den lokale.
