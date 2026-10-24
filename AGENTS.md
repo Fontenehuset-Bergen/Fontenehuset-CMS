@@ -17,7 +17,7 @@ Denne fila har reglene som alle AI-kodeverktøy skal følge i dette repoet. Clau
 npm run dev                          # starter Studio lokalt
 npm run validate                     # sjekker at alle schemas er gyldige
 npm run build                        # bygger Studio
-npx tsc --noEmit --incremental false # typesjekk (feiler foreløpig, se FHS-02)
+npx tsc --noEmit --incremental false # typesjekk
 ```
 
 `npm run typegen` kjører validering og lager typer, men peker på feil mappe foreløpig (FHS-21).
@@ -29,7 +29,7 @@ Lint og tester er ikke satt opp ennå (se FHS-23).
 ## Før en endring er ferdig
 
 - `npm run validate` skal gå uten feil.
-- Typesjekken skal ikke gi nye feil.
+- Typesjekken skal gå uten feil.
 - Test i Studio lokalt: åpne dokumenttypen som er endret, og prøv å lagre.
 - Si hva som er sjekket og hvordan. En grønn typesjekk betyr ikke at det virker.
 
@@ -82,7 +82,6 @@ Skriv ned et funn én gang, der neste person vil lete etter det.
 - **Verdier i `options.list` er lagret data.** Endrer du en verdi (f.eks. «Kjøkken»), passer ikke eksisterende dokumenter lenger. Det krever migrering (FHS-03, FHS-25).
 - **`SANITY_STUDIO_*`-variabler havner i nettleseren.** Alle som åpner Studio kan lese dem. Aldri legg hemmeligheter der (FHS-01).
 - **Mappa heter `schemasTypes/`** (skrivefeil for `schemaTypes`). Ikke gi den nytt navn uten teamet. `sanity-typegen.json` og README peker feil (FHS-21).
-- **Typesjekken feiler fra før** (FHS-02). Sjekk at du ikke har lagt til *nye* feil.
 - **ESLint 9 leser ikke `.eslintrc`.** Lint virker ikke før det finnes en `eslint.config.mjs` (FHS-23).
 - **Opprydding i Trello-verktøyet sletter alle lunsjretter eldre enn 7 dager**, også de som er laget manuelt (FHS-15).
 - **Deploy kjører uten validering** (FHS-26).
