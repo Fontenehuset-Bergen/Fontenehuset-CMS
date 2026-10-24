@@ -12,7 +12,7 @@ Finnes `OPPGAVER.md` (personlig, ikke i git), les oppgaven derfra når et oppgav
 2. **Avtal hva «ferdig» betyr** før arbeidet starter.
 3. **Del opp større oppgaver** i mindre deler (A, B …), med én commit per del.
 4. **Sjekk etterpå:** kjør sjekkene i AGENTS.md og si hva som er testet og hvordan.
-5. **Avslutt:** oppdater dokumenter som endringen gjorde feil, for eksempel Gotchas i AGENTS.md.
+5. **Avslutt:** oppdater dokumenter som endringen gjorde feil, for eksempel Gotchas i AGENTS.md.(Foreslå en ny gotcha bare når det er en felle som faktisk vil bite igjen, ikke for ting som bare gjaldt denne oppgaven.)
 
 Filer kan ha endret seg siden du sist leste dem. Les fila på nytt før du kommenterer den.
 

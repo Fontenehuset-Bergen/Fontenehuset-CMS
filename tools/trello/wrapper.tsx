@@ -4,10 +4,10 @@ import { TrelloImportPage } from "./page";
 
 export function TrelloImportWrapper() {
   return (
-    <TrelloProvider>
-      <SanityProvider>
+    <SanityProvider>
+      <TrelloProvider>
         <TrelloImportPage />
-      </SanityProvider>
-    </TrelloProvider>
+      </TrelloProvider>
+    </SanityProvider>
   );
 }

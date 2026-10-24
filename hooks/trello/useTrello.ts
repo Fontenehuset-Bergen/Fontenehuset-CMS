@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TrelloApiItemModified } from "../../types/trello.types";
-import { useSanity } from "../sanity/useSanity";
 import testData from "../../tests/data/trelloApiResponse.json";
+import { useSanityContext } from "../../context/sanity/provider";
 
 const trelloCredentials = {
   trelloApiKey: process.env.SANITY_STUDIO_TRELLO_API_KEY as string,
@@ -10,7 +10,7 @@ const trelloCredentials = {
 };
 
 export function useTrello() {
-  const { handleCheckForExisting } = useSanity();
+  const { handleCheckForExisting } = useSanityContext();
   const [trelloData, setTrelloData] = useState<TrelloApiItemModified[]>([]);
   const [isTrelloAuthorized, setIsTrelloAuthorized] = useState<boolean>(false);
   const [isTrelloFetching, setTrelloFetching] = useState<boolean>(false);
