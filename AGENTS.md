@@ -89,3 +89,4 @@ Skriv ned et funn én gang, der neste person vil lete etter det.
 - **`@sanity/vision` må ha samme versjon som `sanity`.** Ellers spør `npm run build` om å oppgradere. Installer da med `npm install --legacy-peer-deps @sanity/vision@<versjon>` (sjekket mot Sanity 4.22.1).
 - **Ufarlige varsler:** `ERESOLVE overriding peer dependency`, «Update available» til en ny hovedversjon, og at esbuild sitt install-script blir blokkert. Build virker likevel. Oppgradering til Sanity 5 eller nyere er en egen teamavklaring.
 - **Det publiserte Studio oppdaterer seg selv** (`autoUpdates: true`) og henter Sanity-kode fra Sanitys CDN. Det kan altså kjøre en annen Sanity-versjon enn den lokale.
+- **`TrelloProvider` må ligge inne i `SanityProvider`** (`tools/trello/wrapper.tsx`), fordi `useTrello` bruker `useSanityContext`. Bytter du rekkefølgen, krasjer Trello-verktøyet med en context-feil.
