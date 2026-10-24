@@ -53,11 +53,10 @@ export default {
       type: "number",
       title: "Varighet",
       description: "Hvor mange minutter varer møtet?",
-      validation: (Rule: Rule) =>
-        Rule.required()
-          .min(10)
-          .max(480)
-          .warning("Sjekk at varighet gir mening"),
+      validation: (Rule: Rule) => [
+        Rule.required().error("Feltet må være fylt ut"),
+        Rule.min(10).max(480).warning("Sjekk at varighet gir mening"),
+      ],
     },
     {
       name: "image",
