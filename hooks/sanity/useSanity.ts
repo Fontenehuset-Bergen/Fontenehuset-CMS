@@ -10,7 +10,9 @@ export function useSanity() {
   const [isSanityPruning, setSanityPruning] = useState<boolean>(false);
   const [isSanityPruned, setSanityPruned] = useState<number>(0);
 
-  async function handleCheckForExisting(item: TrelloApiItemModified) {
+  async function handleCheckForExisting(
+    item: TrelloApiItemModified,
+  ): Promise<TrelloApiItemModified | undefined> {
     try {
       // Delay executions to avoid timeouts
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -22,14 +24,10 @@ export function useSanity() {
 
       // Assign duplicate status
       if (result.length) {
-        item.status = "duplicate";
-        item.include = false;
-      } else {
-        item.status = "new";
-        item.include = true;
+        return { ...item, status: "duplicate", include: false };
       }
 
-      return item;
+      return { ...item, status: "new", include: true };
     } catch (err) {
       console.log(err);
       if (typeof err === "string") {
@@ -103,12 +101,10 @@ export function useSanity() {
 
         // Mark status and push to result
         if (response._id) {
-          current.status = "processed";
+          result.push({ ...current, status: "processed", include: false });
         } else {
-          current.status = "failed";
+          result.push({ ...current, status: "failed" });
         }
-
-        result.push(current);
 
         // Rate limit to avoid spam
         await new Promise((resolve) => setTimeout(resolve, 500));

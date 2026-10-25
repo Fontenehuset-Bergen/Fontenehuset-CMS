@@ -38,6 +38,20 @@ export function TrelloImportPage() {
     setTrelloData(handled);
   }
 
+  async function handleSanityPostResult() {
+    const result = await handleSanityPost(trelloData);
+    setTrelloData((prev) =>
+      prev.map((item) => {
+        const posted = result.find((r) => r.id === item.id); // r står for result
+        if (!posted) return item;
+        if (posted.status === "processed") {
+          return { ...item, status: "processed", include: false };
+        }
+        return { ...item, status: posted.status };
+      }),
+    );
+  }
+
   return (
     <Flex padding={4} gap={4} direction={"column"}>
       <Flex gap={4}>
@@ -77,7 +91,7 @@ export function TrelloImportPage() {
             <Box flex={1}></Box>
             <ProcessStatusButton
               disabled={trelloData.length === 0}
-              onClick={() => handleSanityPost(trelloData)}
+              onClick={handleSanityPostResult}
               loading={isSanityPosting}
               icon={AddDocumentIcon}
               // todo: update defaultText to say posted then done

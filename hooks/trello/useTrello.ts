@@ -44,16 +44,18 @@ export function useTrello() {
 
       if (!filtered) return setTrelloError("Unable to fetch from trello");
 
+      const checked: TrelloApiItemModified[] = [];
+
       for (const item of filtered) {
         // Check for duplicates
-        const status = await handleCheckForExisting(item);
+        const checkedItem = await handleCheckForExisting(item);
 
         // Attach fetched date key
-        item.modified = new Date();
+        checked.push({ ...(checkedItem ?? item), modified: new Date() });
       }
 
       // Set finished data
-      setTrelloData(filtered);
+      setTrelloData(checked);
     } catch (err) {
       console.log(err);
     } finally {
