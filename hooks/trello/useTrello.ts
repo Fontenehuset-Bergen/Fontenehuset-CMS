@@ -18,6 +18,7 @@ export function useTrello() {
 
   async function handleFetch() {
     setTrelloFetching(true);
+    setTrelloError(undefined);
 
     try {
       // Query string for trello api
@@ -42,7 +43,8 @@ export function useTrello() {
         (item) => !item.name.includes("http") && item.start,
       );
 
-      if (!filtered) return setTrelloError("Unable to fetch from trello");
+      if (filtered.length === 0)
+        return setTrelloError("Fant ingen lunsjretter med dato i Trello");
 
       const checked: TrelloApiItemModified[] = [];
 
@@ -58,6 +60,9 @@ export function useTrello() {
       setTrelloData(checked);
     } catch (err) {
       console.log(err);
+      setTrelloError(
+        err instanceof Error ? err.message : "Ukjent feil fra Trello",
+      );
     } finally {
       setTrelloFetching(false);
     }

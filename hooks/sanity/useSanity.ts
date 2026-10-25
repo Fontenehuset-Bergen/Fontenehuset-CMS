@@ -30,13 +30,14 @@ export function useSanity() {
       return { ...item, status: "new", include: true };
     } catch (err) {
       console.log(err);
-      if (typeof err === "string") {
-        setSanityError(err);
-      }
+      setSanityError(
+        err instanceof Error ? err.message : "Ukjent feil fra Sanity",
+      );
     }
   }
 
   async function handleSanityPost(data: TrelloApiItemModified[]) {
+    setSanityError("");
     // Create promise queue
     const queue: TrelloApiItemModified[] = [...data];
     const result: TrelloApiItemModified[] = [];
@@ -110,9 +111,9 @@ export function useSanity() {
         await new Promise((resolve) => setTimeout(resolve, 500));
       } catch (err) {
         console.log(err);
-        if (typeof err === "string") {
-          setSanityError(err);
-        }
+        setSanityError(
+          err instanceof Error ? err.message : "Ukjent feil fra Sanity",
+        );
       }
     }
 
@@ -121,6 +122,7 @@ export function useSanity() {
   }
 
   async function handleSanityPrune() {
+    setSanityError("");
     setSanityPruned(0);
     setSanityPruning(true);
     try {
@@ -146,9 +148,9 @@ export function useSanity() {
       return [];
     } catch (err) {
       console.log(err);
-      if (typeof err === "string") {
-        setSanityError(err);
-      }
+      setSanityError(
+        err instanceof Error ? err.message : "Ukjent feil fra Sanity",
+      );
     } finally {
       setSanityPruning(false);
     }
