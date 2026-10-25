@@ -31,7 +31,9 @@ export function useSanity() {
     } catch (err) {
       console.log(err);
       setSanityError(
-        err instanceof Error ? err.message : "Ukjent feil fra Sanity",
+        err instanceof Error && err.message
+          ? err.message
+          : "Ukjent feil fra Sanity",
       );
     }
   }
@@ -112,7 +114,9 @@ export function useSanity() {
       } catch (err) {
         console.log(err);
         setSanityError(
-          err instanceof Error ? err.message : "Ukjent feil fra Sanity",
+          err instanceof Error && err.message
+            ? err.message
+            : "Ukjent feil fra Sanity",
         );
       }
     }
@@ -149,7 +153,9 @@ export function useSanity() {
     } catch (err) {
       console.log(err);
       setSanityError(
-        err instanceof Error ? err.message : "Ukjent feil fra Sanity",
+        err instanceof Error && err.message
+          ? err.message
+          : "Ukjent feil fra Sanity",
       );
     } finally {
       setSanityPruning(false);

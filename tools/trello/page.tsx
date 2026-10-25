@@ -128,6 +128,16 @@ export function TrelloImportPage() {
           </Flex>
         </Card>
       </Flex>
+      {isTrelloError && (
+        <Card padding={4} tone='critical' border role='alert'>
+          <Text>Trello: {isTrelloError}</Text>
+        </Card>
+      )}
+      {isSanityError && (
+        <Card padding={4} tone='critical' border role='alert'>
+          <Text>Sanity: {isSanityError}</Text>
+        </Card>
+      )}
       <Card flex={1} padding={4} border>
         {isTrelloFetching ? (
           <Flex padding={4} gap={2}>

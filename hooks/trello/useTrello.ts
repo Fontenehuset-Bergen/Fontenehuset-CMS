@@ -61,7 +61,9 @@ export function useTrello() {
     } catch (err) {
       console.log(err);
       setTrelloError(
-        err instanceof Error ? err.message : "Ukjent feil fra Trello",
+        err instanceof Error && err.message
+          ? err.message
+          : "Ukjent feil fra Trello",
       );
     } finally {
       setTrelloFetching(false);
